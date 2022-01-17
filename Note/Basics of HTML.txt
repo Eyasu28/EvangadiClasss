@@ -1,0 +1,305 @@
+Understanding HTML
+****************** 
+
+	What is HTML? - Hyper-Text Markup Language  
+	****************************************** 
+
+		It is just a standardized system of tagging a text file 
+
+		- A text file that is "tagged" following the "HTML standard" is called an: 
+			- HTML document 
+
+		Both web developers and web browsers follow this standard to generate expected outcomes
+
+	HTML Versions (The Standard) 
+	**************************** 
+		
+		- Five versions so far 
+			- (HTML 1.0 - HTML5)
+
+		- DOCTYPE 
+			- Is not an HTML tag 
+			- It is just an instruction for your browser to tell what version of HTML your document is using 
+
+			- DOCTYPE declarations 
+			https://www.w3schools.com/tags/tag_doctype.asp
+				- Ex: 
+					- HTML 5: (Only use this one) 
+						<!DOCTYPE html>
+
+					- HTML 4: 
+						<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+
+		- Focus on HTML 5 tags 
+			- Reason 
+				- Browsers understand earlier versions anyways 
+				- HTML5 is simplified 
+				- HTML5, has better error handling 
+				- HTML5 has multi media elements 
+					- Means, browsers that support HTML 5 are also media players  
+					Eg: Video & Audio 
+
+  The purpose of learning HTML 
+  **************************** 
+
+    - The main purpose of learning HTML is to know how to properly tag your text documents in a way that the browser understands what you are trying to accomplish. 
+
+      - Eg: If you are trying to include a title in the text document, how do you say it is a title. Or, if you want to include a paragraph, how do you say it is a paragraph and so on. 
+
+    - To do this, you just follow the standard that browsers can understand 
+    (HTML5 tags)
+
+How to use Visual Studio Code to write HTML code   
+************************************************ 
+
+  - Here are the most common tasks you do using Visual Studio Code  
+    - Open existing folder or file 
+    - Create a new folder in a specific location  
+    - Create a new file in a specific location
+    - Make edits and save 
+    - Renaming files and/or folders 
+
+  - Useful extensions
+    Emmet (learn how to use it)
+      https://www.youtube.com/watch?v=5BIAdWNcr8Y
+    
+    Must 
+      - Open in browser
+        https://marketplace.visualstudio.com/items?itemName=techer.open-in-browser
+
+      - Material theme and icons
+        https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme
+
+      - Prettier
+        https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+
+      - Auto rename tag 
+        https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag
+
+    Visual 
+      - Material theme and icons
+        https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme
+      - Prettier
+        https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode  
+
+
+    Functional
+      - JavaScript (ES6) code snippets 
+        https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets
+
+      - Auto rename tag
+        - https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag
+
+      - Live Server 
+        - https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer
+
+      - Open in browser
+        https://marketplace.visualstudio.com/items?itemName=techer.open-in-browser
+
+HTML Tags
+********* 
+
+	Basic rules of Tags 
+	******************* 
+
+		- Tags provide web browsers with instructions about the type of the texts included in the html document  
+
+			Eg: 
+				<h1> to mean a header </h1> 
+				<p> to mean a paragraph <p/>
+
+		1: Tags are always enclosed in angle brackets: < >  
+			
+			Eg: Paragraph tag  
+				<p>
+
+		2: Tags usually come in pairs: An opening tag and a closing tag 
+
+			Eg: Paragraph tag
+  
+				<p>
+					Content of the <b>paragraph</b> goes in between the opening and the closing tag.
+				</p>
+
+				<p>
+					Opening paragraph tag indicates where the paragraph starts and the closing tag shows where it ends 
+				</p>
+
+		3: A few tags are called non-container tags. Means, they don't contain any content with in 
+ 		
+			Eg: Break tag 				
+
+        <br>  
+
+				<hr>
+					
+				<img>
+
+		4: Tags are comprised of elements and attributes
+
+			Eg: Image tag with attribute width 
+
+				<img src="../apple.png" width="500px" height="400px" alt="Apple's logo">
+
+				<a href="https://www.apple.com/"> Apple Website </a>
+
+				- The image tag (<img>) is the element and width and src in it are the attributes of the element. 
+
+				- Notice that attributes are not included in between the opening and closing tags. They are rather included with in the opening tag itself 
+
+  Basic HTML Tags
+  *************** 
+    The basic skeleton of every web page looks like this
+
+      <html>
+
+        <head>
+          <title> </title>
+          
+        </head>
+
+        <body>
+        </body>
+
+      </html>
+
+    - The first tag in any HTML file is the <html> tag.
+      - This tells web browsers that the document is an HTML file.
+
+    - The second tag is a <head> tag. 
+      - Information between the <head> tags doesn't appear in the browser window, but is still important.
+      - It is called meta information.
+      - The most important meta information in the HEAD tag is the <title> tag. 
+        - Generally, the title should reflect the contents of the page 
+
+    - The true content of your web page is included inside the <body> tag 
+
+Building your first HTML page 
+***************************** 
+
+  ***** HELLO WORLD DAY ***** 
+
+  Steps to create an HTML page (.html)   
+  ************************************ 
+
+    Step 1: Always create a folder for every project you work on 
+
+      - To do this, go to your favorite working location and create a folder
+      - Give the folder a proper name that relates with your project 
+
+    Step 2: Open the folder using your editor (VS) 
+
+    Step 3: Create an HTML document 
+
+      - An HTML document is a simple text file with a .html extension 
+      - Save that file with in your working folder 
+
+    Step 4: Define the DOCTYPE  
+
+      - The first line of any HTML document starts by defining the HTML doctype 
+      
+      - Since we are writing the HTML5 standard, the way to define the doctype is just including the following line at the top of the document 
+
+        <!DOCTYPE html> 
+
+    Step 5: Include the initial HTML boiler tags (! and tab)
+
+      - These boiler tags are the ones which are part of every HTML document 
+      - It includes the <html>, <head> and <body> tags. 
+      - Make sure all of them are closed properly 
+        - Tip: Visual Studio can help you create these quickly 
+
+    Step 6: Give title for your document 
+      
+      - This is defined with in the <title> tag under the <head> section 
+      - At this point, you would have a starter HTML document ready 
+
+    Step 7: Start including the contents to your document 
+
+      - The main content of your HTML document is included with in the <body> tag 
+
+List of HTML5 Tags 
+****************** 
+
+  - A complete list 
+    - https://www.tutorialrepublic.com/html-reference/html5-tags.php 
+
+  Most commonly used HTML 5 Tags 
+  ******************************* 
+
+    Structural Tags
+    ***************
+      
+      <html>
+        <head>
+        <body>
+          <header>
+          <nav>
+          <section>
+          <div>
+          <h1> to <h6>
+          <a>
+          <p>
+          <br>
+          <hr> 
+          <footer>
+
+    Metadata Tags
+    *************
+
+      <link>
+      <style>
+      <title>
+      <meta>
+
+    Form Tags
+    ********* 
+
+      <form>
+        <input>
+        <textarea>
+        <button>
+
+    Formatting Tags
+    *************** 
+
+      <b>
+      <center>
+      <em>
+      <small>
+      <strong>
+      <sub>
+      <sup>
+
+    List Tags
+    ********* 
+
+      <ul>
+      <ol>
+      <li>
+
+    Scripting Tags
+    ************** 
+
+      <script>
+
+
+    Embedded Content Tags
+    ********************** 
+
+      <img>
+      <video> 
+      <iframe>
+
+    Commenting 
+    *********** 
+      - Even though it is not an HTML tag, you use commenting a lot 
+      /* */ - Use this for commenting 
+
+  - Go to the link that contains all of the HTML tags, identify the ones selected above and read about each of them. Understand what each of them represent when used as tags. 
+    https://www.tutorialrepublic.com/html-reference/html5-tags.php 
+
+
+
+

@@ -1,0 +1,485 @@
+Introduction to JavaScript 
+**************************
+
+  Why do we need to learn JavaScript? 
+  *********************************** 
+    
+    * The best way to answer this would be to list out all of the things you would need to do as a full stack web developer
+
+    * In these lists, you have to be clear on where JavaScript fits in the whole picture 
+
+      - You usually start form a design and have to convert the design (PSD) to a webpage. (You use HTML, CSS and Bootstrap for that)
+      - When you want to add some interactivity on the webpage (You use JavaScript)
+      - If your webpage saves and retrieves data, you would need a database (MySql or MangooDB) 
+      - To get the data from the database, you would need to use a programing language (You use JavaScript)
+      - If you host your webpage somewhere on a remote server, you would need a web server to send the page to the user. (Apache or Node). If you use Node, you need ... (JavaScript)
+      - If you want to make your webpage faster and robust, you would need to use frameworks like React or Angular (JavaScript) 
+
+    * So, if you want to be a successful full stack web developer, you really need to focus on JavaScript. 
+
+  What is JavaScript? 
+  ******************* 
+    * Definitions: 
+      Dictionary definition: 
+        JavaScript is an object-oriented computer programming language commonly used to create interactive effects within web browsers.
+      
+      mozilla.org definition:
+        JavaScript is a scripting or programming language that allows you to implement complex features on web pages
+    
+    Key words/phrases from these definitions:
+    *****************************************  
+      - computer programming language
+      - scripting language
+      - interactive effects
+        - within web browsers
+
+      To fully understand what JavaScript is, you would need to understand what these phrases are .
+
+        What is computer programming language? 
+        ************************************** 
+          Definition:
+            - Computer programming is a way of giving instructions to a computer on what it should do.
+
+          What does this mean? 
+            * One thing you have to understand is, everything in your computer's processor and memory works in binary. AS IN EVERYTHING!! 
+           
+            * This is because the mechanism we store data in computers is by using transistors whose only job is to serve as a switch to let electricity pass or not pass. 
+            
+            * It is this letting electricity pass we call 1 and not letting electricity pass we call 0. That is it!! That is the only thing our computer understands. 
+              - For example, if I ask you to represent the number 57 using this concept of letting electricity pass or not pass, what would you do. 
+              - First you convert this number which uses the decimal system in to binary. 
+                -> 57 in binary is: 111001
+                - Since the binary representation has 6 digits. I need at least 6 flip-flops ( collection of transistors) to represent the number 57 with electricity. I would need 3 transistors that let electricity pass, two that don't and finally one, that doesn't. Now if I plug in these 6 transistors to electricity, they will be in the order of: 
+                
+                  - |pass|pass|pass|no pass|no pass|pass|
+                  - |1|1|1|0|0|1|
+
+                - These set of transistors are now located somewhere inside the memory with their own address. 
+
+              - If we do the same for the number 14, it will be: 
+                - 1110
+
+            - Now let's say we want to give instruction to the computer to add 57 and 14 which it has on its memory. 
+
+              - At this point, we need help to actually do the binary addition. That is why we need the help of the processor. The processor has different circuits for different tasks. Like, addition circuit, multiplication circuit, graphic processing circuit, etc ... 
+
+              - These processors have certain number of tasks that they are designed to perform. These TASKS have their own binary representation. 
+
+                - Say for example the "Add" instruction has a representation of "1011010111010". 
+
+                - So, if I want to instruct the computer to add 57 and 14, what I would tell the processor would be something like this: 
+
+                  ( 1011010111010  111001  1110 ) 
+                  Means, add 57 and 14. The processor understands this. This way of writing instruction to the computer is called Machine code. We are talking in the language it really understands. 
+
+            * Imagine how hard it would be to write instructions using 0s and 1s. To make it a little bit easier, people came up with this concept of giving a humanly readable representation to the tasks the processor does.
+              eg: ADD for 1011010111010 
+
+              - Now their instruction to ask the processor to add 57 and 14 would be something like 
+
+                ( ADD  111001  1110 )
+
+              - But the processor doesn't understand what ADD is. So, they wrote a converter that converts their ADD instruction to 1011010111010 and send it to the processor. 
+
+              - That means, they started sending the instruction to the convertor instead of sending it directly to the processor. 
+
+              * This way of sending instruction to the processor using a convertor is called Assembly language. 
+
+              - Then, instead of directly sending the instruction to the processor, we now send instructions to the convert    
+
+            - This way of writing instructions was not easy enough for developers to write. They wanted to simply say 
+
+                57 + 14;
+
+              * Companies recognized this need and started writing software that let people write their instruction in a much simpler way and later be converted in to the binary code that the computer understands. This middle software that convert the humanly instructions to the binary instruction are called COMPILERS. The instructions that are understood by these compilers are what we call Programing Languages. 
+
+              - Since different compilers have their own different standards/formats that they follow, that led to the development of different programing languages. Java, C++, Python, JavaScript, etc .. 
+
+        What is a scripting language?
+        **************************** 
+          * Some programing languages are not written to directly communicate with the processor. They are rather just developed to communicate with just one other software. 
+
+          * For example, JavaScript was originally developed to only communicate with web browsers. The web browsers were the ones that communicate with the processor. For that reason, JavaScript didn't need a compiler that converts it to the Machine code. It only needed to be understood by the browser. 
+
+          - To understand it, browsers have their own interpreter which understands JavaScript codes. These kind of languages which are understood by other software are called interpreted/scripting language. 
+
+            - Every browser has a JavaScript engine that takes our JavaScript code and converts it into something that the browser can understand.
+              - IE - Chakra 
+              - Chrome - V8
+              - Firefox - SpiderMonkey 
+              - Safar - JavaScriptCore
+
+            - Here is a diagram showing the interactions of an HTML file, a CSS file and a JavaScript file with the Browser. 
+
+              https://www.oreilly.com/library/view/php-mysql/9781449355517/httpatomoreillycomsourceoreillyimages1416220.png.jpg
+
+
+          ** JavaScript is both a programing and scripting language.   
+
+        What does creating interactive effects means? 
+        ********************************************** 
+
+          * This is the main thing you need to understand as a front end JavaScript developer. 
+
+          - A web site is called interactive, when it is able to communicate with the user in a meaningful way. 
+
+          * YOUR JOB as a front end JavaScript developer is to list out all the possible actions a visitor might take on your website and choose the ones you want to respond to. Then write a script that responds when that action is taken by a user. 
+
+            - Respond means, could be as simple as changing color or anything that would be meaningful to the user that took the action. 
+
+            - Action means, anything the user does. Could be clicking or hovering over on a specific element of your web site.
+
+            eg: evangadi.com sign up form  
+
+  Getting Started with JavaScript
+  *******************************
+
+    Core JavaScript, Client side and server side JavaScript
+    *******************************************************  
+      - Like we have already said, JavaScript is a language we use to send instructions to the Browser or the Computer. 
+      
+        - For the interpreter or the compiler to understand our instruction, we need to follow a standard that is agreed up on to follow both by the developers of the compilers and the writers. Those standards are called the Core JavaScript. Specific instructions that are only understood by the Browsers are called Client side JavaScript. This usually is related with DOM. Finally, JavaScript instructions that are mainly written to communicate directly with the computer are called Server Side JavaScript.
+
+    What we are going to Learn
+    **************************  
+      
+      * What we are going to cover in here is the standard way of writing a JavaScript code in a way that can be understood by the interpreters or compilers. All programing languages have their own way of formatting the instructions. This standard way of formatting a programing language is called the SYNTAX of the programing language.   
+
+      - If we make the mistake of following the standard syntax, the compiler or interpreter wouldn't understand our code. Means our code won't work. 
+
+      - The first thing we need to learn is the syntax of JavaScript. 
+
+      - Then there is the Semantics. In programing language, Semantics is the meaning of the script you write. Even though we write the script with the right syntax, sometimes the script might be translated in a different way than we anticipated.  
+
+      * One best practice you should follow when writing a script is to check every single line of code as you write it. Both for syntax and semantics error. That means you need some kind of way to double check your line of code as you write it. This process of checking your script is called debugging.    
+
+      - The only way the debugger would know if your code works or not is by actually compiling or interpreting it. That means we either need a compiler or an interpreter to help us double check our code. This would be our feedback system. 
+
+      * One thing that is easily available for us to do the debugging is the interpreters that we find on our browsers. Most browsers have the console window to display syntax errors and other things we write on the console. This console is one thing we use the most to receive feedback from the interpreter. So, we will be using the console as a way of double checking everything we write.    
+
+    How to include JavaScript on our HTML and use the console for debugging?  
+    ************************************************* 
+
+      - Just like HTML and CSS, JavaScript is also a text file
+        - HTML file uses .html extension 
+        - CSS file uses .css extension 
+        - JavaScript file uses .js extension
+
+      - We can include the JavaScript code inside of our HTML file and load it on our browser so that the interpreter can execute the code. 
+
+      - The <script> tag is used to include a JavaScript file inside of our HTML 
+
+        - Use the "src" attribute in the <script> tag to include an external JavaScript file inside of HTML
+
+      - Once you include your script on the HTML, you can use the "console.log()" method to display what you want on the console 
+
+          *** HELLO WORLD using JavaScript on console*** 
+
+          console.log("Hello World")
+
+          Spend your next three weeks exclusively on the console. Don't worry how we will use this programing knowledge to build websites for now.  
+
+  Core JavaScript
+  ***************
+
+    Variables 
+    ********** 
+
+      - A place where script temporarily saves data to use it later in the script 
+
+      - It is basically saying, hey remember this data, we are going to use it later 
+
+      - The name variable is used because the value in  variables can be changed when the script runs 
+
+      Declaring Variables:
+      ******************** 
+
+        - This is announcing/introducing the variable name you want to use in the script 
+        - Ex 
+          var width; 
+            - width is the name of the variable we are planning to use 
+
+            - var is the JavaScript keyword we use to declare a variable 
+
+            - Newer ways of declaring variables is introduced in 2016 (ES6)
+              - let and const
+              - We will discuss the difference between var and let when we discuss scoping later on  
+
+      Assigning a value to a variable
+      *******************************
+
+        - Once declared, we can assign/give a value to the variable 
+
+        - Ex
+          width = 10;
+          = is the assignment operator we use 
+          10 is the value we assign
+          width is the variable 
+
+        - You can now use the variable by using its name
+
+        Short hand for declaring and assigning variables 
+          Ex: 
+          var width = 10; 
+
+      Changing the value of a variable 
+      ********************************* 
+
+        - Once declared and assigned, the value of a variable can then later change the value with in the script 
+
+        Ex: 
+        var width = 10; 
+        width = 11; 
+        width = 12; 
+
+        At this point, width is 12. The latest value always overrides the ones before hand 
+
+      Rules for naming variables in JavaScript
+      **************************************** 
+
+        - It should begin with a letter, $ sign or _ 
+          - It can not start with a number 
+        - Do not use -, space, or . on a variable name 
+        - Do not use reserved key words 
+          Full list of reserved key words 
+          https://www.w3schools.com/js/js_reserved.asp
+        - Variables are case sensitive 
+          - Width and width are two different variables 
+        - If the variable name uses multiple words capitalizes the first letter of each word except the first one (Optional)
+          Ex: var firstName 
+            var userLastName 
+
+    Data Types/Structures
+    *************************
+      
+      What is Data Structure?
+      ***********************
+        
+        - Data structure is a particular way of organizing data in a computer so that it can be used effectively.
+
+        - Learning programing language starts by understanding what data is and how it is structured for effective use  
+
+        - Data structures are the same for almost all programing language
+      
+      Why do we need to structure data in the first place? 
+      **************************************************** 
+
+        - Like we have said earlier, data is the only thing computers understand 
+
+        - We need to give them a lot of data for them to be able to understand us and our world better 
+
+        - If we just store data in the computer with out any organizational structure, it quickly becomes very hard to use. It becomes very difficult to RETRIEVE and use it later when we need to use it 
+
+        - Hence we need to organize the data we store in our computer 
+
+        - The solution for that is using DATA STRUCTURE
+
+        - Data structure is a particular way of storing and organizing information in a computer so that it can be retrieved and used most productively  
+
+      Types of Data Structures
+      ************************ 
+
+        - Here is a good diagram showing the different types of Data Structures 
+          - https://cdn.ttgtmedia.com/rms/onlineimages/whatis-data_structure.png
+
+        - Types of data structure 
+          
+          - Primitive data structure (Data type) (JS) 
+            - Number 
+            - String  
+            - Boolean
+
+            Other primitive javascript data types 
+            - Undefined 
+            - Symbol 
+            - BigInt 
+
+          - Non-primitive data structure
+            - Linear data structure 
+              - Array 
+              - Stack 
+              - Queue
+              - Linked List 
+
+            - Non linear data structure 
+              - Tree 
+              - Graph 
+              - Hash table 
+
+        - Primitive data structures are the ones that are predefined by almost all programing languages 
+          - Whether it is JavaScript, Python or any other programing language, they know what these data types are. They know what to do with them 
+
+          Ex: If you tell a programing language to add two integer values, it knows what to do with the integers  
+
+        - Non-primitive data structure are structures created by grouping primitive data together 
+          - The way they are grouped together varies depending on the kind of task we are trying to accomplish 
+
+          - If the data are grouped in a sequential order, they are called Linear. If not, they are called non-linear  
+
+        - For the Scope of this course, we will focus mainly on primitive data structures and Arrays from Linear data types.
+          - This means, we will instruct the computer to store, retrieve and process data in one of these data structure formats
+          - It is absolutely crucial to master the other linear and non-linear data structures too. Specially when you later get to Machine Learning. As a Junior or mid-level web developer, it is very unlikely you are going to come across non-linear data structures  
+
+    Operators 
+    ********** 
+
+      Assignment operator ( = )
+      ************************* 
+
+        - It is used to assign or change values 
+
+        Ex:
+          var a = 5; 
+          a = 7;
+          a is now 7; 
+          
+      Arithmetic operators 
+      ********************
+        - Operators work in a similar way we use them in math
+          + â€” Addition
+          - â€” Subtraction
+          * â€” Multiplication
+          / â€” Division
+          BODMAS 	 
+
+        Ex: 
+          var a, b, c, d, e; 
+          a = 2; 
+          b = 3;
+          c = a + b;
+          d = a * b;
+          e = (a + b) * (c/d); 
+
+      String Operator (Concatenation)
+      ******************************* 
+
+        - When using the + sign with string data type, the two variables just get concatenated 
+        
+        ** - The way you identify some data as string is by adding quotation marks around it 
+
+          Eg: 
+            2 is number 
+            "2" is string 
+        Ex: 
+          var a = "Test Text"; 
+          var b = "Another Text"; 
+          var c = a + b; 
+          c becomes "Test TextAnother Text"; 
+
+          var a = 4; 
+          var b = "Test"; 
+          var c = a + b; 
+
+          c is now "4Test"; 
+
+      Comparison Operators
+      ******************** 
+
+        - Comparison operators always return a boolean value 
+
+          == â€” Equal to compares only the values 
+          === â€” Equal value and equal type
+
+          != â€” Not equal
+          !== â€” Not equal value OR not equal type
+
+          > â€” Greater than
+          < â€” Less than
+          >= â€” Greater than or equal to
+          <= â€” Less than or equal to
+
+        Ex: 
+          var a = 5; 
+          var b = "5"; 
+
+          a == b; 
+          is true 
+
+          var a === b; 
+          is false 
+
+        - Here is the official ECMA Script definition regarding the rules JavaScript follows to handle comparison
+        http://www.ecma-international.org/ecma-262/5.1/#sec-11.8.5
+
+        In summary:
+          - If comparing two numbers, it follows the standard numerical comparison.
+          - If comparing two strings, it follows the standard alphabetical comparison.
+            - This is handled by first converting the characters to their numerical equivalent representation.
+          - If a string is compared to a number, JavaScript tries to convert the string to number and does numerical comparison.
+            eg: If you compare (2 < "12"), the string "12" is first converted to number 12 and is compared to the number 2.
+
+            But, if the string is something that cannot be converted to number, i.e, if it is a non numerical character, then its type after conversion will be NaN (Not a Number). Any NaN compared with a number would result in a false output
+
+          - NOTE to come back and refer after we cover functions 
+
+            - You can use functions like parseInt() and Number() to enforce some level of enforcement to convert a string to number.
+              - These functions have their own rules of handling different scenarios.
+              - For example:
+                - parseInt("2Abebe") is the number 2. The remaining string "Abebe" gets ignored.
+                - But, even parseInt cannot convert everything to number. For example parseInt("Abe2be") is NaN. Hence, comparing it with anything would result in a false value 
+
+      Logical Operators
+      ***************** 
+
+        - We use logical operators to perform multiple comparisons 
+        
+        - We use these operators when we want to write conditional statements. We will learn about conditional statements later. For now, lets just focus on the operators  
+
+        && â€” Logical and
+        || â€” Logical or
+        ! â€” Logical not
+
+        true && true = true 
+        true && false = false 
+        false && false = false
+        false && true = false 
+  
+        true || true = true 
+        true || false = true 
+        false || false = false
+        false || true = true  
+
+        (1==1 && 2==2 && 3==7) -> False 
+        (1==1 || 3==2 || 3 == 7) -> True 
+        !(1==1 || 3==2) -> False 
+
+        !False = True 
+        !True = False 
+
+  Practice Exercise 
+  ******************
+    Practice 1 
+      - Find out the answers for these by displaying it on console
+        Note: The answer should be True or False 
+
+        4 > 3
+          eg: console.log(4 > 3)
+
+        2 < "12"
+        2.0 == 2
+        2.0 === 2
+        2.0 == "2"
+        2 < "John"
+        2 > "John"
+        "2" < "2"
+        "2" > "12"
+        1  == '1'
+        1  === '1'
+        0  === false
+        0  == false
+
+    Practice 2 
+      - write a simple script that adds 1 and 2 and displays the result on console 
+        - Use variables a, b & c
+          - Use "let" to declare the variables  
+        - Use the formula c = a + b 
+        - Display the value of c on console
+
+    Practice 3 
+      - Create a variable to hold your first name 
+      - Create another variable to hold your last name 
+      - Create a third variable to hold your full name 
+      - Assign the value of your first name and last name to the first two variables 
+      - Use "+" to concatenate your first name and last name to assign the result to your last name's variable
+      - Don't forget to include space between your first and last name  
+      - Display the value of your last name on console 

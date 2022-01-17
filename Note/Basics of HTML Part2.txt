@@ -1,0 +1,70 @@
+Creating HTML pages 
+******************* 
+
+  Steps to create an HTML page (.html)   
+  ************************************ 
+
+    Step 1: Always create a folder for every project you work on 
+
+      - To do this, go to your favorite working location and create a folder
+      - Give the folder a proper name that relates with your project 
+
+    Step 2: Open the folder using your editor (VS) 
+
+    Step 3: Create an HTML document 
+
+      - An HTML document is a simple text file with a .html extension 
+      - Save that file with in your working folder 
+
+    Step 4: Define the DOCTYPE  
+
+      - The first line of any HTML document starts by defining the HTML doctype 
+      
+      - Since we are writing the HTML5 standard, the way to define the doctype is just including the following line at the top of the document 
+
+        <!DOCTYPE html> 
+
+    Step 5: Include the initial HTML boiler tags 
+
+      - These boiler tags are the ones which are part of every HTML document 
+      - It includes the <html>, <head> and <body> tags. 
+      - Make sure all of them are closed properly 
+        - Tip: Visual Studio can help you create these quickly 
+
+    Step 6: Give title for your document 
+      
+      - This is defined with in the <title> tag under the <head> section 
+      - At this point, you would have a starter HTML document ready 
+
+    Step 7: Start including the contents to your document 
+
+      - The main content of your HTML document is included with in the <body> tag 
+
+      - Always start by including an <h1> tag 
+        - <h1> is the main header tag used as the main title of your document 
+        - This header is different form the title you already included inside the <title> tag 
+        - An HTML document is suppose to have only a single <h1> tag. If you want to include more headings, use the <h2> - <h6> 
+
+      - All the other tags you use are dependent on the type of content you want to include 
+
+  Building a page that contains all of the common HTML Tags
+  ********************************************************* 
+    - CommonlyUsedHTMLTagsList
+      - Special focus 
+        - img tag 
+        - anchor tag 
+        - headings (h1 - h6)
+        - Lists (ul & ol)
+        - form 
+        - video 
+        - iframe 
+
+    https://www.w3schools.com/html/html_form_elements.asp
+
+
+
+
+
+
+
+

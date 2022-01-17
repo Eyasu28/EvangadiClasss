@@ -1,0 +1,293 @@
+Introduction to Object Oriented Programing 
+****************************************** 
+
+	The Object Oriented Data Model 
+	******************************* 
+
+		- Using structured data like Array is very helpful. But not enough to effectively describe real objects to computers
+
+		- For that we use Data Models to better describe entities 
+
+		Definition of a Data model: 
+			A model that organizes elements of data and standardizes how they relate to one another and to the properties of real-world entities.
+ 
+		- One of the most commonly used data model is the Object Oriented Data Model
+
+		What is Object Oriented Data Model? 
+		*********************************** 
+
+		- Simply put, this is an attempt to describe objects to  computers in a similar way we people understand them
+
+		- This Object Oriented Data Model has the following basic structure 
+
+			- Object (The thing we describe)
+				- Properties
+					- Characteristics of the thing we are describing 
+
+				- Method/Function (Action) 
+					- What does it do
+
+				- Events
+					- How does it interact with other thing  
+					- What happens to the thing when we interact with it 
+
+		- Example: Describing a Car using the Object Oriented Data Model 
+
+			- The Object 
+				- Car 
+
+			- Properties
+				- Model
+				- Make
+				- Color
+				- Doors
+
+			- Actions 
+				- Car Starts (startCar)
+				- Car Accelerates (accelerate)
+				- Car Decelerates (decelerate)
+
+			- Events 
+				- enter > startCar
+				- up arrow > accelerate 
+				- down arrow > decelerate           
+
+			*** At this point, the computer would have some understanding of what a car is. It still doesn't know everything about a car. For example, it doesn't know it has windows or tire ;) ***   
+
+Object Oriented Programing in JavaScript 
+**************************************** 
+
+	Definition: 
+		The basic idea of OOP is that we use objects to model real world things that we want to represent inside our JavaScript programs, and/or provide a simple way to access functionality that would otherwise be hard or impossible to make use of.
+
+		Objects are at the center of an Object Oriented Programing. Most modern day programing languages including JavaScript use this model.  
+
+	What is a JavaScript Object
+	***************************  
+		Definition 1: 
+			A JavaScript object is a collection of properties and methods, defined as a key-value pair. Each property has a key and a value. 
+
+		Definition 2:
+			Object is the collection of related data or functionality in the form of key value pair. These functionalities usually consist of several functions and variables. All JavaScript values are objects except primitives.
+
+	How to create an Object in JavaScript 
+	************************************* 
+
+		Syntax:
+			1. Object declaration syntax 
+				let exampleEmptyObject = {};
+			
+			2. key : value syntax
+			
+			Eg: 
+				let person = {
+					firstName: 'Abebe',
+					lastName: 'Kebede'
+				};
+
+		Accessing properties
+			The dot notation (.)
+				Syntax: 
+					objectName.propertyName
+
+				eg: 
+					console.log(person.firstName);
+
+			Array-like notation ( [])
+				Syntax:
+					objectName['propertyName'];
+
+				eg: 
+					console.log(person['firstName']);
+
+		Change the propertyâ€™s value
+			Syntax: 
+				objectName.propertyName = 'NewValue'; 
+
+			eg: 
+				person.firstName = 'Almaz';
+
+		Add a new property to an object
+			Syntax: 
+				objectName.newPropertyName = 'New value'
+
+			eg: 
+				person.age = 50; 
+
+
+		Methods
+		******* 
+			Objects have functions. The functions in objects are called Methods 
+
+			Syntax: 
+				objectName.functionName = function () {
+					// Function definition goes here 
+				}
+
+			Object literal syntax:
+				eg: 
+					let person = {
+						firstName: 'Abebe',
+						lastName: 'Kebede',
+						someFunction: function () {
+							// Function definition goes here
+						}
+					};      
+			
+		The "this" value
+			Methods usually need to access and use data stored in the object.
+
+			The "this" value references the object that contains the method
+
+				eg: 
+					let person = {
+						firstName: 'Abebe',
+						lastName: 'Kebede',
+						someFunction: function () {
+							return this.firstName;
+						}
+					}; 
+
+	JavaScript Object Constructors
+	****************************** 
+		Definition: 
+			- A constructor is a function that initializes an object. It is a "blueprint" for creating many objects of the same "type".
+
+			Eg: 
+				function Person(first, last) {
+					this.firstName = first;
+					this.lastName = last;
+				}
+
+				* It is considered good practice to name constructor functions with an upper-case first letter.
+
+		- Objects of the same type are created by calling the constructor function with the "new" keyword:
+
+			eg: 
+				var myClassMate = new Person("Abebe", "Kebede");
+
+		Adding a Method to a constructor function 
+		***************************************** 
+			Eg: 
+				function Person(first, last) {
+					this.firstName = first;
+					this.lastName = last;
+					this.fullName = function() {return this.firstName + " " + this.lastName;};
+				}
+
+			Creating an instance of the Object  
+				var myClassMate = new Person("Abebe", "Kebede");
+				console.log(myClassMate.fullName);
+
+Most used built-in JavaScript Objects
+*************************************
+
+	Here are all of the Built-in JavaScript objects. 
+		- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+
+	Among the list above, these are some of the built-in JavaScript Objects that we use a lot. 
+
+		- String
+		- Array
+		- Math
+		- Number
+		- Date
+		- JSON
+		- RegExp
+
+	The Top three most used JavaScript Built-it Objects 
+		The String Object
+		***************** 
+			
+			- String objects are used to work with text. It works with a series of characters.
+
+			- Just like any other Object, the String Object also has properties and methods that we use can use. 
+
+			Commonly used property 
+				- length
+
+			Commonly used methods 
+				- charAt()
+				- slice()
+				- toLowerCase()
+				- toUpperCase()
+
+		The Array Object
+		***************** 
+
+			Commonly used methods 
+				- push()
+					Add an item to the end of an Array
+				- pop()
+					Remove an item from the end 
+				- shift()
+					Remove an item from the front   
+				- unshift()
+					Add an item at the front of an Array
+				- isArray()
+					Returns true if the argument is an array, or false otherwise.
+				- filter()
+					Returns a new array containing all elements of the calling array for which the provided filtering function returns true.
+				- forEach()
+					Calls a function for each element in the array.
+				- map()
+					Returns a new array containing the results of calling a function on every element in this array.
+				- sort()
+					Sorts the elements of an array in place and returns the array.
+		
+		The Math Object
+		*************** 
+			Commonly used methods 
+				- floor()
+					Returns the largest integer less than or equal to a number.
+				- min()
+					Returns the smallest of zero or more numbers.
+				- pow()
+					Returns base to the exponent power, that is base exponent.
+
+Arrow function - Simplified function writing
+******************************************** 
+
+	- Regular JavaScript way of writing a function  
+
+		Ex: 
+			var abebe = function() {
+				return "Hi there"; 
+			}
+			let someFunction =  function(a,b) {
+				return "Hi there a and b"; 
+			}
+
+
+	- ES6 way (Arrow function) 
+
+		- We just eliminate the use of the word function and add an arrow after the brackets. 
+
+		const anotherFunction = () => {
+			return "Hi there"; 
+		}
+
+		- If you are only returning one single thing, you can also drop the curly braces 
+		
+		const anotherFunction =  () => return "Hi there"; 
+
+Writing Algorithms using the Built-in functions 
+*********************************************** 
+
+	Let's solve this problem by taking advantage of the Built-in function
+
+	What's Hiding Amongst the Crowd?
+	******************************** 
+		A word is on the loose and now has tried to hide amongst a crowd of tall letters! Help write a function to detect what the word is, knowing the following rules:
+
+		The wanted word is in lowercase.
+		The crowd of letters is all in uppercase.
+		Note that the word will be spread out amongst the random letters, but their letters remain in the same order.
+		Examples
+		detectWord("UcUNFYGaFYFYGtNUH") âžž "cat"
+
+		detectWord("bEEFGBuFBRrHgUHlNFYaYr") âžž "burglar"
+
+		detectWord("YFemHUFBbezFBYzFBYLleGBYEFGBMENTment") âžž "embezzlement"
+
+			

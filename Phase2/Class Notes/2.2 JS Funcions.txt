@@ -1,0 +1,521 @@
+  ... continued
+
+  Data Types/Structures
+  *************************
+    
+    What is Data Structure?
+    ***********************
+      
+      - Data structure is a particular way of organizing data in a computer so that it can be used effectively.
+
+      - Learning programing language starts by understanding what data is and how it is structured for effective use  
+
+      - Data structures are the same for almost all programing language
+    
+    Why do we need to structure data in the first place? 
+    **************************************************** 
+
+      - Like we have said earlier, data is the only thing computers understand 
+
+      - We need to give them a lot of data for them to be able to understand us and our world better 
+
+      - If we just store data in the computer with out any organizational structure, it quickly becomes very hard to use. It becomes very difficult to RETRIEVE and use it later when we need to use it 
+
+      - Hence we need to organize the data we store in our computer 
+
+      - The solution for that is using DATA STRUCTURE
+
+      - Data structure is a particular way of storing and organizing information in a computer so that it can be retrieved and used most productively  
+
+
+    Types of Data Structures
+    ************************ 
+
+      - Here is a good diagram showing the different types of Data Structures 
+        - https://cdn.ttgtmedia.com/rms/onlineimages/whatis-data_structure.png
+
+      - Types of data structure 
+        
+        - Primitive data structure (Data type) (JS) 
+          - Number
+          - String
+          - Boolean
+          
+          Other primitive javascript data types 
+          - Undefined 
+          - Symbol 
+          - BigInt 
+
+        - Non-primitive data structure
+          - Linear data structure 
+            - Array 
+            - Stack (LIFO) 1, 8, 9, 7 
+            - Queue (FIFO) 1, 8, 9, 7 
+            - Linked List 
+
+          - Non linear data structure 
+            - Tree 
+            - Graph 
+            - Hash table 
+
+      - Primitive data structures are the ones that are predefined by almost all programing languages 
+        - Whether it is JavaScript, Python or any other programing language, they know what these data types are. They know what to do with them 
+
+        Ex: If you tell a programing language to add two integer values, it knows what to do with the integers  
+
+      - Non-primitive data structure are structures created by grouping primitive data together 
+        - The way they are grouped together varies depending on the kind of task we are trying to accomplish 
+
+        - If the data are grouped in a sequential order, they are called Linear. If not, they are called non-linear  
+
+      - For the Scope of this course, we will focus mainly on primitive data structures and Arrays from Linear data types.
+        - This means, we will instruct the computer to store, retrieve and process data in one of these data structure formats
+        - It is absolutely crucial to master the other linear and non-linear data structures too. Specially when you later get to Machine Learning. As a Junior or mid-level web developer, it is very unlikely you are going to come across non-linear data structures  
+
+  Operators 
+  ********** 
+
+    Assignment operator ( = )
+      - It is used to assign or change values 
+
+      Ex:
+        var a = 5; 
+        a = 7;
+        a is now 7; 
+        
+    Arithmetic operators 
+
+      - Operators work in a similar way we use them in math
+        + â€” Addition
+        - â€” Subtraction
+        * â€” Multiplication
+        / â€” Division
+        BODMAS 	 
+
+      Ex: 
+        var a, b, c, d, e; 
+        a = 2; 
+        b = 3;
+        c = a + b;
+        d = a * b;
+        e = (a + b) * (c/d); 
+
+    String Operator (Concatenation)
+
+      - When using the + sign with string data type, the two variables just get concatenated 
+      
+      ** - The way you identify some data as string is by adding quotation marks around it 
+
+        Eg: 
+          2 is number 
+          "2" is string 
+      Ex: 
+        var a = "Test Text"; 
+        var b = "Another Text"; 
+        var c = a + b; 
+        c becomes "Test TextAnother Text"; 
+
+        var a = 4; 
+        var b = "Test"; 
+        var c = a + b; 
+
+        c is now "4Test"; 
+
+    Comparison Operators
+
+      - Comparison operators always return a boolean value 
+
+        == â€” Equal to compares only the values 
+        === â€” Equal value and equal type
+
+        != â€” Not equal
+        !== â€” Not equal value OR not equal type
+
+        > â€” Greater than
+        < â€” Less than
+        >= â€” Greater than or equal to
+        <= â€” Less than or equal to
+
+      Ex: 
+        var a = 5; 
+        var b = "5"; 
+
+        a == b; 
+        is true 
+
+        var a === b; 
+        is false 
+
+    Logical Operators
+      - We use logical operators to perform multiple comparisons 
+      
+      - We use these operators when we want to write conditional statements. We will learn about conditional statements later. For now, lets just focus on the operators  
+
+      && â€” Logical and
+      || â€” Logical or 
+      ! â€” Logical not
+
+      true && true = true 
+      true && false = false 
+      false && false = false
+      false && true = false 
+
+      true || true = true 
+      true || false = true 
+      false || false = false
+      false || true = true  
+
+      (1==1 && 2==2 && 3==7) -> False 
+      (1==1 || 3==2 || 3 == 7) -> True 
+      !(1==1 || 3==2) -> False 
+
+      !False = True 
+      !True = False 
+
+  Weak Typing
+  ************ 
+
+    - Weak typing means the data type of a variable can change 
+      Ex: 
+        var a = 5;
+        a = "Text";
+        a = true;  
+
+    - If you use a data type JavaScript didn't expect, it tries to make sense of the operation by converting the data type using its own best guess. 
+
+    This is called Type coercion. 
+      Ex: 
+        "5" + "Test" results "5Test"; 
+        5 + "Test" ->  "5Test"
+        5 + 6 -> 11 
+
+
+    - Because of Type coercion, every value in JavaScript can be translated to a "True" or "False" value 
+
+      Meaning: Any of the following can mean True 
+
+        var a = true; 
+        var	a = "Any string/text";
+        var	a = 8; (Any number other than 0)
+
+      Meaning: Any of the following can mean False 
+
+        var b = false; 
+        var	b = 0; 
+        var	b = "";
+        var	b; 
+
+  Arrays 
+  ******
+
+    - An array is a special type of data structure   
+
+    - Instead of just storing one value, an array stores a list of values 
+      - Best to use arrays when working with lists of related items 
+
+      - eg: Colors of White, black and orange 
+
+    How to declare an array 
+    ************************ 
+
+      - Array can be declared just like any variable. The name of the Array is also going to be the variable. The difference is in the value. Array contains multiple values 
+
+    Declaring empty array 
+    **********************
+      - You use square brackets to represent arrays 
+
+      Eg: 
+        var exampleArray = [];
+
+    Adding values to an Array
+    ************************** 
+      - Arrays can include multiple values as a groupe
+      - You use the "," sign to separate multiple items of an Array  
+
+      - Eg: 
+      var colors = ['white', 'black', 'orange'];
+
+      - Arrays are pairs of keys and value
+        - If the keys are not provided, then automatic numbers starting from 0 will be assigned as keys. 
+        - These automatic key of an Array are called indexes 
+
+        - Eg: 
+        in the array colors, the key value pair looks like this  
+            0: white (first element) 
+            1: black 
+            2: orange 
+
+    Accessing array values with index  
+    **********************************  
+
+      - If we want to access a specific value from an array, we use the key to use the value 
+        - Example 
+          - To access the value white, we use 
+          colors[0]
+
+          - To access the value orange, we use 
+          colors[2]
+
+Functions/Methods
+***************** 
+
+  *** The person who is going to master writing a JavaScript instruction/function is the one who can chop down an instruction it to very small components and describe it *** 
+
+  ** NOT THE ONE WHO JUST KNOWS BASIC JAVASCRIPT ** 
+
+    Eg: 
+      - https://media.timeout.com/images/105282704/image.jpg
+  
+  ** PSUDO CODE **
+
+  What are functions? 
+  ******************* 
+
+    Methods/Functions are basically the same thing with some minor differences 
+      - They are a set of statements designed and grouped together to perform a specific task   
+      
+      - The difference is, methods are defined with in Objects. (We will cover what Objects are later)
+
+      - You can describe functions as words (specifically verbs) are for the English language.
+        - If I say RUN in english, it is basically a set of instructions grouped together. 
+          
+          The word run can be broken down in to smaller tasks
+            - Stand on your right leg 
+            - Lift your left leg 
+            - Put it in front of your right leg 
+            - Stand on your left leg 
+            - Lift your right leg 
+            - Put it in front of your left leg 
+            - Do it faster than the speed of walking (Walking needs to be defined too)
+
+  Why do we need functions? 
+  ************************* 
+    
+    - This is mainly to avoid writing the same set of instructions again and again, every time we want the same kind of task done 
+
+    - Instead, we write the instruction once and give that set of instructions a name
+      - That set of instructions with a name is called a function  
+      
+      - The next time we want to perform the same kind of task, we just call the name of the function and use it 
+
+      - Some functions take inputs to successfully perform their task. The input we give to our function is called "Argument". 
+
+      - We have the same thing in the English language too 
+        - For example, if I say paint, it might not be specific enough
+
+          - Some might paint a wall 
+          - Some might paint on a canvas 
+          - Some might paint with color red 
+          - Some might paint with yellow 
+
+        - But if I say, pain the wall blue
+          - Paint is the function (The set of actions you need to do)
+          - Wall and Blue are the arguments, inputs to the function Paint  
+
+  How to declare/define a function in JavaScript 
+  *********************************************** 
+
+    - Declaring a function uses the keyword "function" 
+    
+    - Just like we used the keyword "var" to declare a variable 
+
+    - Then we need to provide the name of the function 
+    
+    - The name can be whatever you choose it to be
+      - We can not have two functions with the same name
+    
+    - Then we tell if the function needs an argument to perform its task 
+      - Ex: A function that does addition (Needs the numbers to be added)
+      - If it does, we provide "parameters" with in brackets to the function 
+        - Parameters are just variables that we use when we declare a function, just to say our function needs Arguments to perform its task 
+      - If it doesn't 
+        - We just leave the brackets empty
+
+    - Then we put all the statements of what we want the function to do with in side curly braces 
+
+    - Ex: 
+
+      function myFunctionName() {
+        alert("Display something"); 
+      }  
+
+      To use this, we just call the name 
+      myFunctionName(); 
+
+  Functions with arguments 
+  ************************
+
+    - How about if we want our function to display whatever we give it? 
+      - Then we rewrite our function in a way that it takes arguments 
+
+    NOTE: 
+      - Parameter is variable in the declaration of function. 
+      - Argument is the actual value of this variable that gets passed to function. 
+      
+      Ex: 
+      function myFunctionName(a) {
+        alert(a); 
+      } 
+      To use this, we call the function name and provide what we want to display in place of our place holder parameter 
+
+      var myMessage = "My new message"; 
+      myFunctionName(myMessage);
+
+    - A function that does addition 
+
+      function myAdditionCalculator (a, b) {
+        var c; 
+        c = a + b; 
+        alert(c);
+      } 
+
+  Functions that return a value
+  ******************************  
+
+    - In real world, we don't usually want the results to be displayed in a window. So what happens is, our function returns the calculated value to who ever wanted the result. 
+
+    - The way to do that is by using the key word return 
+
+      function myAdditionCalculator (a, b) {
+        var c; 
+        c = a + b; 
+        return c; 
+      } 
+      How to use this 
+
+      var numberOne, numberTwo, total;
+      numberOne = 4; 
+      numberTwo = 5; 
+      total = myAdditionCalculator (numberOne, numberTwo); 
+
+  Variable Scoping 
+  ***************** 
+
+    - Variables with in a function are only recognized in that function 
+
+    - Global variables are recognized by everyone 
+
+    Ex: 
+      function myAdditionCalculator (a, b) {
+        var c; 
+        c = a + b; 
+        return c; 
+
+      
+      }
+
+      if you call c outside of the function, it throws an error. Because c is not known out side of the function 
+
+
+    var, let & const
+    **************** 
+      - let and const are introduced in 2016 (ES6)
+
+      - var and let are very similar. The main difference relies in scoping 
+
+        - var creates function scope variable 
+
+        - let & const create block scope variable 
+        (This is how most other programing languages scope variables) 
+
+      - It is recommended to use let instead of var.
+        - let prevents mistakes of trying to redeclare an already declared variable
+    
+      - const, is similar to let, but it is a constant. Meaning, you can't reassign the value
+        - const does not allow reassignment
+        - const variables need to be declared using an initializer, or it will generate an error 
+
+Week one practice questions  
+***************************
+
+  Question 1 - Comparisons 
+    - Find out the answers for these by displaying it on console
+      Note: The answer should be True or False 
+
+      4 > 3
+        eg: console.log(4 > 3)
+
+      2 < "12"
+      2.0 == 2
+      2.0 === 2
+      2.0 == "2"
+      2 < "John"
+      2 > "John"
+      "2" < "2"
+      "2" > "12"
+      2 > "2" 
+      0  === false
+      0  == false
+
+  Question 2 - Variables  
+    - Write a simple script that adds 1 and 2 and displays the result on console 
+      - Use variables a, b & c
+        - Use "let" to declare the variables  
+      - Use the formula c = a + b 
+      - Display the value of c on console
+
+  Question 3 - String concatenation  
+    - Create a variable to hold your first name 
+    - Create another variable to hold your last name 
+    - Create a third variable to hold your full name 
+    - Assign the value of your first name and last name to the first two variables 
+    - Use "+" to concatenate your first name and last name to assign the result to your last name's variable
+    - Don't forget to include space between your first and last name  
+    - Display the value of your last name on console 
+
+  Question 4 - Array  
+    - Create an array containing 5 first names of the class students 
+    - Display each name on console 
+      - Use the array index to call the names
+    - Display the third item of the array on console  
+
+  Functions 
+  ********* 
+    Question 5 
+      - Define a simple function named myFirst that prints the word "Hello" on the console
+        - First define the function 
+        - Then call the function  
+
+    Question 6
+      - Define a function called mySecond that takes an argument and prints that on console 
+
+    Question 6
+      - Define a function called myThird that takes an argument and prints that on the console. But, it uses mySecond function to do that  
+
+    Question 7 
+      - Write a function named myFourth that takes an array as an argument and prints the first value of the array on the console
+
+    Question 8 
+      - Write a function named myFifth that takes an array with two numbers in it as an argument and prints the sum of the two numbers on console 
+
+Questions from edabit.com
+************************* 
+  - Return the Sum of Two Numbers
+    https://edabit.com/challenge/3LpBLgNRyaHMvNb4j
+  
+  - Convert Minutes into Seconds
+    https://edabit.com/challenge/8q54MKnRrm89pSLmW
+
+  - Return the Next Number from the Integer Passed
+    https://edabit.com/challenge/NAQhEoxbofPidLxm9
+
+  - Area of a Triangle
+    https://edabit.com/challenge/3CaszbdZYGN4otQD8
+
+  - Return the First Element in an Array
+    https://edabit.com/challenge/QaApgtePE6QrCZ64o
+
+  - Convert Hours into Seconds
+    https://edabit.com/challenge/6AnQqiEjkJdZrWhPS
+
+  - Find the Perimeter of a Rectangle
+    https://edabit.com/challenge/XnJ24rWW7iJkNrtsh
+
+  - Football Points
+    https://edabit.com/challenge/GwvwXHWCThHZrR7xu
+  
+  - The Farm Problem
+    https://edabit.com/challenge/8Qg78sf5SNDEANKti 
+
+
+

@@ -1,0 +1,359 @@
+
+
+Conditional statements and loops
+********************************
+
+	Understanding Statements 
+	************************
+
+		- The entire goal of learning a programing language is to be able to communicate with computers and use their computational power to solve problems of the world.
+
+		- One of the most challenging thing for new programmers is not actually grasping the techniques of writing the code. Unfortunately, many new comers focus only on this part. What is most important is understanding the "sequential instruction" nature of programing languages. Asking a computer to do something complex is like instructing a three year old boy on the other side of the wall to carefully follow your instructions and draw a floor map of a big house. 
+
+		- Before you can figure out how to communicate with the kid and successfully instruct him to draw a floor map, you should first figure out how to make him draw a single line. Then may be some curved line. You should also have some kind of feedback mechanism to see if what the boy is drawing is what you are instructing. Eventually, once you figure out his level of communication skill, you can adjust your way of communication to his level to speed up the communication between the two of you.   
+
+		- Lets think of a different scenario. Let's say the person on the other side of the wall is a professional architect. How would things be different? In this scenario, you don't have to oversimplify your way of communication as you did for the kid.
+
+		- Now, lets change the kid or the architect with a computer. How much do you have to simplify your way of communication for the computer to understand you? Understanding this is SUPPER SUPPER important. Plus, how do you talk to something non human?    
+
+		- To help you understand this concept of "sequential instruction" and help you adjust to the communication level of computers as of 2020, think of Chu'lo the Robot, as the one you are talking to.  
+			https://www.evangadi.com/courses/Chulo.jpg
+
+			- Chu'lo is a robot that lives on the other side of you computer
+			- He is only three and doesn't understand English!
+			- He understands functions as you understand words in English
+			- He is super obedient and does exactly what you ask him to do. NOTHING MORE NOTHING LESS!!   
+
+	Steps of making decisions 
+	************************* 
+
+		- We need decisions because the code we write can usually take more than one direction depending on different situations 
+
+		- To determine which direction it should take, we need to have some kind of decision mechanism. These are the common steps we take while we want to make any kind of decision. 
+
+			1. Evaluation 
+				- This is when you analyze values in your script to determine whether or not they match expected results 
+
+				Ex:
+					- Hey chu'lo, create a folder called "Abebe" if it doesn't already exist 
+
+					- If student scores 50 or more it is a pass 
+					- If student scores less than 50 it is a fail
+
+					score = 82; 
+
+
+			2. Decisions 
+				- Using the results of the evaluation, you decide which path to take 
+
+				Ex: 
+					- Chu'lo checks if there is a folder named "Abebe" and makes decision to create the folder or not
+					- The decision is to determine if student got a pass or fail score  
+
+			3. Action 
+				- This is what you do after the decision is made 
+					- Creating the folder for exmple  
+
+			4. Loops 
+				- On occasions where you have to do the evaluation and decision steps again and again you use loops 
+
+				Ex: 
+					- Hey Chu'lo, create 100 files in the current directory 
+
+	Conditional Statements
+	********************** 
+
+		Definition: 
+			Conditional statement is a set of rules performed if a certain condition is met.
+
+		There are three parts of conditional statements 
+
+			1. The Evaluation 
+				- Does comparison of values to make a decision
+				Ex: 
+					var a = 82; 
+					(a <= 55) 
+
+			2. The Decision 
+				- This is always a True or False value 
+					Ex: Evaluation   
+						var a = 32; 
+						(a <= 55) 
+					Decision: True 
+
+			3. The Statement 
+				- What to do when conditions are fulfilled or not fulfilled  
+
+				Ex: 
+					console.log("RAISE YOUR HAND!"); 
+					console.log("You failed"); 
+
+		If Statement
+		************
+			Definition: 
+				- An if statement is a programming conditional statement that, if proved TRUE, performs a function or displays information. 
+
+			Syntax
+			****** 
+				- We start by using the key word "if"
+				- We put the conditions with in a bracket 
+				- We put the code block with in a brace 
+
+				Ex 1: 
+					var pass = 50; 
+					var score = 17; 
+
+					if (score >= pass) {
+						console.log("Hey you passed");
+					}
+
+					if (score <= pass) {
+						console.log("You failed");
+					}
+
+				Ex 2: 
+					var a = 87; 
+					var b = 65; 
+
+					if ( (a > 50) && ( b > 70) ) {
+						console.log("Hey you failed"); 
+					}
+
+				Alternative syntax 
+				****************** 
+					- If the statement is only a single line, you can leave out the containing curly braces 
+
+					Ex: 
+					if (score <= pass)
+						console.log("You failed");
+			
+		If ... Else Statement
+		********************* 
+			- This statement checks a condition. If it returns true, then it executes the block with in the if statement. If it returns false then it executes the code with in the else block 
+
+				Ex: 
+					var pass = 50; 
+					var score = 82; 
+
+					if (score >= pass) {
+						console.log("Hey you passed"); 
+					}else{
+						console.log("You failed"); 
+					}
+
+				Ex: 
+					var a = 90; 
+					var b = 80;
+					var c = 70;
+					var score = 99; 
+
+					if (score >= a) {
+						console.log("You got A"); 
+					}else if (score >= b){
+						console.log("You got B"); 
+					}else if(score >= c){
+						console.log("You got C"); 
+					}else{
+						console.log("You Failed!");
+					}
+
+				Ex: To Chu'lo 
+					if(checkIfFolderExists('Abebe')) {
+						console.log("Folder already exists");
+					}else{
+						createFolder('Abebe');
+					}
+
+				Ternary Operator: Alternative for if .. else 
+
+					Syntax: 
+						condition ? returnsIfTrue : returnsIfFalse
+
+						Ex: 
+							var pass = 50; 
+							var score = 82;
+							var result = ""; 
+
+							result = (score >= pass)
+								?"Hey you passed"
+								:"You failed"; 
+
+							console.log(result);
+
+		Switch Statement
+		**************** 
+
+			- We use a switch statement when you know the input value we are going to compare 
+
+			- The switch statement starts with a variable called the switch value 
+
+			- Each case indicates the possible value and the code it runs if the given value matches 
+
+			Ex: 
+				var greetings; 
+				var timeOfDay; 
+				timeOfDay = "afternoon";
+
+				switch (timeOfDay) {
+					case "morning":
+						greetings = "Good morning"; 
+						break; 
+					
+					case "afternoon":
+						greetings = "Good afternoon"; 
+						break; 
+
+					case "evening": 
+						greetings = "Good evening"; 
+						break; 				
+
+					default: 
+						greetings = "Hi there"; 
+						break; 
+				}
+
+				console.log(greetings); 
+
+	Decision Loops 
+	************** 
+		
+		- Loops check conditions and if it returns true, the code block runs. The condition will be checked again once the code finishes executing. If the condition is still true, the code executes again and again until the condition returns false. 
+
+
+		for loop 
+		********* 
+			- This is the most commonly used loop 
+
+			- We use the for loop when we want to execute the code for a specified amount of time 
+
+			Loop counters 
+			************* 
+
+				- The for loop uses a counter as a condition 
+				
+				- The counter tells the code to run for a specified amount of time 
+
+				- For example, if we want the code to be executed 10 times, we tell that to our for loop as follows 
+
+					Ex: 
+						var i; 
+						for(i=1; i<=55; i++){
+							console.log("raise your hand); 
+						}
+
+						for (i = 0; i < 10; i++) {
+							// Our code goes here 
+						} 
+
+						if(score < pass){
+
+						}
+
+				- Notice that we have three parts in our condition that are separated by ";"; 
+				
+					- The first part is called initialization 
+
+						- All we do in here is tell our loop where it should start counting from 
+							- This is like saying, we are going to start counting starting from whatever value we give it in here 
+
+							- It is usually 0 (Could be anything though)
+
+					- The second part is called condition 
+
+						- What this does is, it checks if we have already run the code 10 times 
+
+						- If we haven't, it runs the code again 
+
+					- The third part is called, update 
+
+						- What this does is, it tells our loop how it should do the counting 
+
+						- In our code above, we said i++. It just means i+1; 
+
+					- When all these parts come together, the meaning they give our loop is, 
+						- Start counting your loop starting from 0. To keep track of how many times the code is run, save that value on a variable called i. To start with, lets assign 0 to our variable i. 
+
+						- Then compare that i with 10, and if that i is less than 10, run the code. 
+							- In the first loop, i is 0, which is less than 10. So the code executes. 
+
+						- Once the code finishes executing, increase the value of i by 1. 
+							- In the second loop, i is 1. 1 is still less than 10. Execute the code again. 
+
+						- Repeat this until i is no more less than 10 
+
+
+					- Just to see how the value of i is changing, run this code 
+
+					Ex: 
+						var i; 
+						for (i = 0; i < 10; i++) {
+							console.log(i); 
+						} 
+
+				Ex: Understand this well 
+
+					var someNumbers = [7, 58, 27]; 
+					var lengthOfArray = 3; 
+					var loopNumber = 0; 
+					var someMessage = ""; 
+					var i; 
+
+					for (i = 0; i < 3; i++){
+						loopNumber = i + 1; 
+
+						someMessage = "Loop " + loopNumber + ":" + someNumbers[i]; 
+						console.log(someMessage);
+					}
+
+				Ex: Chu'lo 
+					Create 10 files in the current folder 
+					var i; 
+					for (i = 0; i < 10; i++) {
+						var file_name = "Abebe" + i;
+						createFile('file_name'); 
+					} 			
+
+		While Loop 
+		***********
+
+			- While executes the code in the while block as long as the condition returns true  
+
+			- After every single code execution, it comes back and checks if the condition is still true 
+
+				Ex: 
+					var f = 0; 
+					while (f < 3) {
+						console.log(f);
+						f++; 
+					}  
+
+				- This code executes 3 times 
+
+		
+	// Decision Loop example  
+
+		Question: 
+		Create a function that takes a number as an argument. Add up all the numbers from 1 until the number you passed to the function. For example, if the input is 4 then your function should return 10 because 1 + 2 + 3 + 4 = 10.
+		// - Use for loop for one
+		// - Think of a better way to do this
+
+		// Examples
+		// addUp(4) âžž 10
+		// addUp(13) âžž 91
+		// addUp(600) âžž 180300
+		// Pseudo code
+		// Check if the provided value is a number
+		// Declare a variable to save the total sum. (initially 0)
+		// Use for loop that starts from 1 and ends at the given number
+		// Add the value of the var i on the total sum variable
+		// Return the total sum
+
+		// Method 1
+		function addUp1(num) {
+			let sum = 0;
+			for (let i = 1; i <= num; i++) {
+				sum = sum + i;
+			}
+			return sum;
+		}
+		console.log(addUp1(600));

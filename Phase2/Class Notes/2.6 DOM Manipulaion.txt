@@ -1,0 +1,333 @@
+DOM Manipulation - (Document Object Model)
+****************************************** 
+
+	Relationship between JavaScript and HTML 
+	**************************************** 
+		- HTML is to define the structure of a web page 
+		- CSS is to provide the style/look of the HTML page 
+		- JavaScript is to add interactivity to the HTML page 
+
+		How to add JavaScript on HTML 
+		***************************** 
+
+			The <script> tag
+			**************** 
+				- The <script> tag is an HTML tag that is specifically used to include/inject JavaScript to an HTML page 
+
+				- There are two ways to include JavaScript code on a web page 
+					- Embedded in the script tag: 
+						Ex: 
+							<script>
+								function someFunction() {
+									alert ('Test');
+								}
+
+								someFunction();
+							</script>
+
+					- External JS file 
+						<script src="./someJsFile.js"></script>
+
+			Recommended place to add the <script> tag  
+			*****************************************
+
+				- The HTML parser on your browser loads and executes the script as soon as it encounters it 
+
+				- It is usually recommended to add scripts at the bottom 
+				- You can also use the "defer" attribute to tell the HTML parser to load the script after it finishes loading the other HTML elements 
+					- "defer" is an attribute that is added on HTML 4 just for this purpose
+						Ex: 
+							<script src="./someJsFile.js" defer></script>
+					- There is also another useful attribute called "async" that is used to load the script at the same time the HTML is being loaded 
+
+		How do HTML and JavaScript they work together? 
+		*********************************************** 
+			- HTML is a mark up language. JavaScript is a programing language the usually deals with objects. How do they work together then. 
+
+			- From what we have learned so far on JavaScript, you can manipulate data types like Array using JavaScript right. We have also seen how we can access and manipulate JavaScript objects. 
+
+				Ex: Array 
+					let someArray = [1, 6, 8];
+					console.log(someArray);
+					someArray[1] = 44;
+					console.log(someArray);
+
+				Ex: Object 
+					let somePerson = {
+						name: "Abebe",
+						age: 30,
+						education: {
+							school: "Evangadi",
+							field: "Full stack",
+							grade: "3.9"
+						}
+					}
+					console.log(somePerson);
+					somePerson['education']['grade'] = "4.0";
+					console.log(somePerson);
+
+				- What if we have a way to convert the HTML in to a structured Object like the "somePerson" Object above? We can then apply the JavaScript techniques we know on the Object right? 
+
+					- DOM is the answer for that. 
+
+	Understanding the DOM  
+	*********************   
+
+		Why do we have to understand DOM 
+		********************************* 
+
+			Because, your job as a JavaScript front end developer is to select and update the DOM elements when user interacts with a website. DOM is what lets you do this using JavaScript. 
+
+				- Selecting means: Locate the element you want to work with 
+				- Updating means: Interact with the text of the element, attributes of the element or with its child elements 
+				(This is where you apply your basic programing skills)
+
+				- NOTE: 
+					- DOM is not part of JavaScript
+					- DOM is not HTML neither 
+					- DOM is a set of rules where browsers use to recreate an HTML code in a form of an Object. Then they use the structure of that object to render the HTML code and display it on the browser 
+					- JavaScript interacts with the created DOM object 
+
+		What is the DOM Object?
+		********************** 
+
+			Definition 1:
+				The DOM is a language-agnostic structure implemented by browsers to allow for web scripting languages, like JavaScript, to access, modify, and update the structure of an HTML web page in an organized way. 
+				
+			Definition 2: 
+				The HTML DOM is a standard for how to get, change, add, or delete HTML elements.
+
+			Definition 3:
+				The DOM is a logical tree-like Model that organizes a web pageâ€™s HTML Document as an Object.
+					
+			- DOM is the link between an HTML web page and JavaScript.
+				https://content.codecademy.com/courses/dom/dom_revision_1.svg 
+
+		The DOM Tree 
+		************ 
+			- Diagram 
+				https://content.codecademy.com/courses/dom/dom_revision_6.svg 
+
+			- When a browser reads HTML code, whenever it encounters an HTML element like html, body, div etc., it creates an object called a Node. Eventually, all HTML elements will be converted to objects. 
+
+			- After the browser has created Nodes from the HTML document, it has to create a tree-like structure of these node objects. Since our HTML elements in the HTML file are nested inside each other, the browser replicates that using a tree-like structured Node objects. 
+
+			- JavaScript doesnâ€™t understand what DOM is, it is not part of the JavaScript specifications. DOM is a high-level Web API provided by the browser to efficiently render a webpage and expose it publicly for the developer to dynamically manipulate DOM elements for various purposes.
+
+			- Structure of a DOM tree
+				Eg 1: 
+					- https://miro.medium.com/max/1040/1*YSA8lCfCVPn3d6GWAVokrA.png 
+
+				Eg 2:   
+					- https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/DOM-model.svg/1200px-DOM-model.svg.png
+
+			- As the name indicates, this is representation of a page as an Object 
+
+			- The DOM Tree contains four kind of nodes in it
+				Everything that makes up your DOM is more generically known as nodes.
+				** Every NODE is an object on its own 
+
+				1: Document Node
+				**************** 
+
+					- Represents the entire page 
+					
+					- Contains multiple elements in it 
+
+					- If you want to access any other node, you would have to pass through the Document Node 
+
+					- The Document object has multiple methods that you can use to look and access a specific element with in the DOM object 
+
+				2: Element Node
+				**************** 
+
+					- Element nodes are created to model each HTML tag we use in our HTML code 
+
+					- Each of them are modeled as Objects 
+
+						Ex elements: 
+							<html>
+							<head>
+							<body>
+							<h1>
+							<div>
+							<p>
+							<a> 
+							etc ...
+
+					- Each of these Element objects have methods in them that you can use to access and alter the texts and attributes in them 
+
+				3: Attribute Node 
+				***************** 
+
+					- As we have learned before, HTML elements can have multiple attributes 
+
+					- These attributes of an HTML element are modeled as Attribute Node 
+
+					- Once again, Attribute Nodes are also objects. Means they have their own method that we can use to read or change the attribute values  
+
+					Ex of attributes: 
+
+						<html lang="en-US"> 
+						<a href="">
+						<img src="" width="" alt="">
+						<div id="">
+						<p style="">
+						etc ... 
+
+				4: Text Node 
+				************ 
+
+					- Text Nodes are the text content of the HTML element 
+
+					Ex: 
+						<p> Some text </p>
+						<a href=""> Some link </a>
+						<div> Content text </div>
+						etc .... 
+
+	Manipulating DOM 
+	**************** 
+	
+		Manipulating DOM involves two steps
+		
+			1: Finding/selecting the element we want to work with 
+			2: Altering the text or attributes of that element  
+
+			- What makes all this possible is the "document" object. 
+			
+				The "document" object in JavaScript is the door to the DOM structure. This is the name of the JavaScript object that contains all the methods and properties to help us access and manipulate the DOM elements
+
+					The "document" object allows us to access the root node of the DOM tree. You can access the other child nodes of the DOM as properties of the document object. 
+
+						Ex: If you want to access the body node, you can access it as 
+							document.body  
+
+		Step 1: Selecting Elements 
+		**************************
+
+			- Selecting can also be divided into three types  
+
+				- Select an individual element 
+					Ex: Finding one specific <div> element 
+
+				- Select multiple elements
+					Ex: Finding all <div> elements with some similar property 
+
+				- Traversing between multiple elements
+					Ex: Finding a <p> element with in a particular <div> 
+
+			Selecting an individual element
+			******************************* 
+
+				- There are three common ways to select a specific element 
+
+				1. Using the getElementById() method 
+					Ex: 
+
+				2. Using the querySelector() method 
+					Ex: 
+
+				3. By traversing from one element to the next
+					- Will see examples later  
+
+			Selecting multiple elements
+			***************************
+
+				- There are three common ways to select multiple elements 
+
+				1. Using the getElementsByClassName() method
+					Ex: 
+
+				2. Using the getElementsByTagName() method 
+					Ex: 
+
+				2. Using the querySelectorAll() method
+					Ex: 
+			
+			Selecting one element from a nodeList
+			************************************* 
+				
+				1. Using the item() method 
+					Ex: 
+
+				2. Using Array syntax
+					Ex:
+
+				- Repeating action for all of nodeList items 
+					Ex:   
+
+					// ** HTMLCollection vs NodeList **  
+						//According to MDN documentation:
+					
+					// Notice how treating HTMLCollection exactly like an array could sometimes lead to unexpected result
+
+					// 1.getElementsByClassName() returns a live HTMLCollection representing an array-like object of all child elements which have all of the given class name(s).
+					
+					// 2.querySelectorAll() returns a static (not live) NodeList representing a list of the document's elements that match the specified group of selectors.
+
+			Traversing between multiple elements
+			************************************* 
+
+				- You can traverse from one element to another by using the following properties 
+
+				- parentNode
+					Ex: 
+
+				- previousElementSibling 
+					Ex: 
+
+				- nextElementSibling
+					Ex: 
+
+				- firstElementChild 
+					Ex: 
+
+				- lastElementChild
+					
+		Step 2: Altering values and properties 
+		************************************** 
+
+			Accessing and Altering a specific text node
+			******************************************* 
+				- You use the property "nodeValue" to access or update content of a text node 
+
+				- textContent is another way of updating text 
+				
+				Using textContent to access value 
+					Ex: 
+
+			Working with HTML content
+			*************************  
+
+				- This is when you want to add, update or remove an entire block of HTML code from your page
+
+				- You use the following properties and methods for that 
+					- createElement()
+					- innerHTML
+					- textContent 
+					- appendChild()
+					- removeChild()
+									
+			Working with attributes 
+			***********************
+				- This is when you want to add, update or remove the attribute value of an element 
+
+				- You use the following properties and methods for that 
+					- className 
+					- classList
+					- id
+					------------------  
+					- hasAttribute()
+					- getAttribute()
+					- setAttribute()
+					- removeAttribute()
+
+			Working with inline styling 
+			****************************
+
+				Changing CSS Values with the style property 
+
+				CSS Style to JavaScript style 
+				http://www.sitestepper.be/en/css-properties-to-javascript-properties-reference-list.htm
+			

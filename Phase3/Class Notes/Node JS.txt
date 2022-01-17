@@ -1,0 +1,434 @@
+Introduction to Node.js
+***********************   
+
+  Prerequisites to understand Node.js 
+  ***********************************  
+    - Before we even start learning Node, we have to understand why Node.js is necessary to begin with. 
+      - To understand that, we have to clearly understand the problem it is trying to solve. 
+        - To understand the problem, we have to clearly understand how a website works in details. 
+
+      - Lets go over all the steps that are involved to make any website work 
+
+    How does a website work? 
+    ************************ 
+
+
+      How do local static web pages work?
+      ***********************************  
+
+        What is a webpage? 
+        ******************* 
+          - By definition, a webpage is a properly tagged HTML text document.
+
+          - The main purpose of a web page is to display the text information that is included in the document in a well organized and visually meaningful way to the user. 
+
+          - As a web page is simply a text document, we would need help to create some useful visual representation of the text. A software that helps us create a useful visual representation is called a Browser. This means a web page with out the help of a Browser is as helpless as a text document. 
+
+        The Browser 
+        *********** 
+
+          - The main role of a web browser is to create a visual representation of the text document based on the tags used on the text document. The text document with the HTML tags included in it is called the HTML document. This process of creating the visual representation the browser follows is called Rendering. 
+
+          - For the browser to be able to do its job, it needs to get the HTML tagged text first. When the HTML file is saved locally, all the browser needs is a way to locate this resource file containing the HTML. The way we achieve this is by giving the URL (Uniform Resource Locator) to the browser. Since we are on a local computer this URL is just the path to the file. Path is structured by the Operating System on the computer.
+
+            Eg: /Week-1/clock/index.html 
+
+          - The browser has a place to let us provide this location/address of the file. It is called the address bar. (Located at the top of your browser). The browser then finds the file and starts rendering it in a way that makes more visual sense. 
+
+          - If in case additional resources are included in the HTML file, the browser then goes back and gets that resource from the provided URL. (This could be an image, a css file, a js file, etc ...). Since every resource is located on the local computer, there is no problem for the Browser to do its job. (No additional help is needed in here)
+
+          - If the file that is required is a JavaScript file, it means the browser needs help to understand the code on the JavaScript file. 
+
+            - Every browser has a JavaScript engine that takes our JavaScript code and converts it into something that the browser can understand.
+              - IE - Chakra 
+              - Chrome - V8
+              - Firefox - SpiderMonkey 
+              - Safar - JavaScriptCore
+
+          - Here is a diagram showing the interactions of an HTML file, a CSS file and a JavaScript file with the Browser. 
+
+            https://www.oreilly.com/library/view/php-mysql/9781449355517/httpatomoreillycomsourceoreillyimages1416220.png.jpg
+
+          - Now lets move the web page to a different computer 
+
+      How do remote static web pages work?
+      ************************************  
+
+        - Now the text file (the web page) is on a different computer, the browser needs to get this file first to be able to render it. 
+
+        Requesting and receiving data from a remote computer 
+        ****************************************************
+
+          - Whether the web page is on a local or remote computer, it is the responsibility of the user to provide the correct location of the file (URL) to the browser. 
+
+          Locating the computer containing the file 
+          ***************************************** 
+
+            - The most common way of doing this is using the Domain Name of the server. Domain names are names that we choose to give to our server just to help users remember the name of our remote computer. 
+
+            - There is a global standard of naming servers that everybody follows. There is a governing body controlling this too. This system is called Domain Name System (DNS). 
+
+              - You can read more about it here 
+                - https://www.cloudflare.com/learning/dns/what-is-dns/
+
+            - Once we locate the location of the server, we still need to locate the specific location of the file on that computer. That specific location should also be include on the URL we provide to our browser. 
+
+              eg:  https://www.apple.com/mac/index.html 
+
+          Getting the file
+          ****************
+
+            - At this point, we have the location of the file we are looking for. But, how does to browser receive the content? This was not a problem when the file was located on the local computer. Because the operating system can be directly used for that. But, in the remote case, the file is located somewhere else and needs to be sent to the computer containing the browser. 
+
+            - It is at this point the TCP/IP network protocol come to play. 
+            
+            - TCP/IP is a family of communication protocols used to connect computer systems in a network. It is named after two of the protocols in the family: Transmission Control Protocol (TCP) and Internet Protocol (IP). Hypertext Transfer Protocol (HTTP) is a member of the TCP/IP family. HTTP is a transfer protocol that is specifically designed to transfer mainly text files through the internet. 
+
+            - To be able to send or receive data using the HTTP protocol through the TCP/IP network protocol, we need a software that understands this HTTP protocol and help us send the HTML text from the server to the browser requesting the document. The software that receives the request and handles the delivery of the requested file is called a Web Server. It is one of the things a Web Server does     
+
+          Understanding the TCP/IP Networking Layers 
+          ******************************************  
+            - The software that controls the TCP/IP usually resides in the operating system, where it can be shared by all application programs running on the machine.
+            
+            - The TCP/IP has five layers that are used to manage the transportation of data between computers on the internet. Below are the layers and what they are responsible for. 
+
+            Application Layer
+            ***************** 
+              - Refers to the applications that are going to make the communication through the network 
+                Eg:  
+                  - Browser, CyberDuck, Outlook, etc ....
+              
+              - Each of these applications use some kind of data transfer protocol to format the data to be sent 
+                Eg: 
+                  Browser - HTTP, 
+                  CyberDuck - FTP, 
+                  Outlook - SMPT, etc ... 
+
+              - The Data to be sent starts to be packed in this layer  
+              - Once the data is formatted following one of the protocols, it then gets passed to the layers that manages the transportation
+
+              - At this layer, what is going to be sent is called DATA 
+
+            Transport Layer
+            *************** 
+              - The transport layer is responsible for end-to-end delivery of data from the source host to the destination host.
+              
+              - The main protocol of this layer is called the TCP protocol 
+              
+              - TCP is a reliable connection-oriented protocol that transmits data from the source to the destination machine without any error. A connection is established between the peer entities prior to transmission. At the sending host, TCP divides an incoming byte stream into segments and assigns a separate sequence number to each segment. At the receiving host, TCP reorders the segments and sends an acknowledgment to the sender for correct receipt of segments. TCP also manages flow control so that a fast sender does not overwhelm a slow receiver. 
+
+              - This layer adds the port number and sequence to the data 
+                - For example port 80 will be added to the data if it is going to be sent through HTTP 
+                - This port will be later used by the receiving machine to determine which specific application is responsible to handle the request 
+                  - In this case, it will be received by a web server application
+              - At this layer, what is going to be sent is called a SEGMENT 
+                - SEGMENT = DATA + (PORT and Sequence info)
+
+            Network Layer
+            *************
+              - The network layer includes the powerful Internet Protocol (IP)
+              
+              - This layer responds to service requests from the transport layer and issues service requests to the data link layer. 
+
+              - This layer adds the source and destination IP address
+
+              - At this layer, what is going to be sent is called a PACKET 
+                PACKET = SEGMENT + IPs 
+
+            DataLink Layer (Ethernet)
+            ************************* 
+              - This layer adds the sender and/or receiver's mac addresses along with some error checking mechanism to be used by the receiver 
+                - Mac address is a unique number assigned by the manufacturers of the network card. Every network card has this address 
+                - Every device that is connected to the Internet has a unique IP address assigned to it. 
+                  - This Assigning of addresses is managed by a global authority known as IANA ( Internet Assigned Numbers Authority )
+                  - With the current design of the Internet, this IP address is assigned to Routers. (ISPs manage this)  
+                  - Multiple devices can be connected to a single Router. The router then manages each device using their specific Mac address that is unique to each device 
+              - At this layer, what is going to be sent is called a FRAME
+                FRAME = PACKET + Mac Address 
+
+            Physical Layer
+            ************** 
+              - The physical network layer specifies the characteristics of the hardware to be used for the network. Basically Cables
+
+              - This is where the FRAME leaves the sender machine 
+
+      How do local dynamic web pages work?
+      ************************************
+
+        What is a dynamic web page? 
+        *************************** 
+
+          - Simply put, a dynamic web page is a page that contains content that is dynamically generated during a run time. When we covered a static page earlier, we mentioned the page is a text document with the content already written on it. But in the case of a dynamic page, the content on the page is not fully written and tagged as HTML yet. Rather it is generated when the browser requests the document. 
+
+          - What the content is going to be is determined based on multiple conditions. These conditions are included in the file to be requested. The conditions are pre-written by the person who builds the page. This person (the developer) determines what needs to be generated based on the requirements of that web page. In a technical term, these conditions are called the logic behind generating the content of that page.
+
+          - To be able to generate the content following some kind of logic, we need to use a programing language that can directly communicate with the processor of the computer. These programing languages who have a compiler to help them directly communicate with the computer are called Back End programing languages. The most common ones are (PHP, JAVA, C++, JS, etc ...) 
+
+          - For example, if we want to write a PHP program on our computer, we also need to install the PHP compiler on the computer to help us translate the PHP syntax into something the computer understand. 
+
+          - Just like we use the .html extension to determine the type of an HTML file, other programs also have their own unique extension that they use to quickly determine the type of the file. For example, PHP uses the extension .php.
+
+          - Now, instead of creating a static HTML file, lets create a web page with a content that is going to be dynamically generated using PHP. 
+
+            /clock/time.php 
+
+          - Now lets go ahead and open this file with our browser 
+            - First thing, it has a different extension than .html. Therefore the browser doesn't know what to do with it. 
+
+            - Since PHP is also a text file, the browser would just treat it as a text file and display all the texts as is. 
+
+            - For the browser to understand what is intended and display the correct current time, it needs two things. 
+              1. It needs something that understands a file with a .php extension 
+              2. It also needs to get the resulting document as HTML. Because that is what it understands. 
+
+            - Here is where a software known as Web Server comes to play. This software knows that the browser intends to receive (HTML) and also understands that the browser doesn't know what to do with the PHP code.
+
+            - Usually, a web server and a browser communicate with each other using the HTTP protocol. That means, they both follow the standards defined in the HTTP protocol to understand each other. There are multiple protocols in the computer/internet world. For example, the FTP protocol, SMTP protocol, HTTPS protocol and so on. These protocols have their own assigned unique IDs that are used to identify them specifically. For example the ID of the HTTP protocol is 80. These IDs given to specific protocols are called Port Numbers. 
+              - These IDs can be changed if you need to. 
+              - If you don't change them, the default values are used
+              - For example, the commonly used alternative port ids for HTTP are port 8080 and port 8888 and the default is 80  
+
+            - When you install a web server on your computer, it defines two things. One is the root directory, where it serves the files from and secondly the port it is listening to. (Port 80 by default). Whenever there is a request on port 80 of that computer, (or the port that is being listened by the web server) it is this software that receives and handles HTTP requests.   
+
+            - Going back to our PHP page above, for our browser to receive the dynamically generated value of the PHP page and display it correctly, we have to do these two things first. 
+              1. The php file needs to be inside the root directory of the web server. 
+                - We can choose this location depending on the software we use 
+
+              2. Our browser needs to send an HTTP request to our web server and ask for the generated document
+
+              NOTE: If you are using MAMP, you can also set up the root directory for the web server.      
+
+            - Finally if the browser sends an HTTP request to the web server and asks for the content of the time.php file, the web server receives the request, checks the extension of the requested file and determines where to send it to to be processed. In our case, it is PHP. Then the web server passes it to the PHP to compile and return the result. Then the web server receives the result and sends back to the browser as HTML. The browser then renders the result based on the returned HTML.  
+
+      How do remote dynamic web pages work?
+      ************************************
+        
+        - Remote dynamic web pages also work the same way as a local dynamic web page. There needs to be a compiler and a web server installed to be able to generate the dynamic content and send it back to the client which requests the data. 
+
+        - One additional challenge when a web page is available of a publicly accessible domain is, multiple people can request to access the same page at the same time. This phenomenon is called "concurrent request". 
+
+        - Being able to handle multiple requests at the same time is very critical specially when your web site has a lot of visitors. One of the ways to determine the effectiveness of a web server is to check its ability to handle concurrent requests.  
+
+      How Web servers traditionally handle concurrent requests 
+      ******************************************************** 
+
+        - There used to be something called CGI (Common Gateway Interface). CGI is a standard that defines a way for a web server to interact with external content-generating programs, which are often referred to as CGI programs. These CGI programs can be written using any language that can interface with the CGI. (Eg: C, C++, Java, PERL., etc ...). CGI is an extension of the HTTP protocol. 
+
+          - When the web server receives the request, it passes the control to the CGI Application. The CGI interface will be used for that. To achieve this, there needs to be a new process for every request. Means each time an HTTP server receives a request, it initiates a new process.
+
+          - Which is very resource intensive if multiple requests are sent to the server at the same time. It is like opening new tab on your browser. To be specific, if the CGI Application is written using PHP, then the server needs to run new PHP on every request. 
+
+          - This approach gets very expensive as lots of CPU power is needed to handle a large number of concurrent requests.   
+
+      Modern web servers 
+      ****************** 
+        - Different web servers tried different methods to solve this problem of handling this concurrent request problem 
+
+        - Most implemented this concept of threading. This is only possible only if the programing language supports threading in the first place. 
+          - Threading is a way for a program to split itself into two or more simultaneously running tasks. Threads are distinguished from processes in that processes are typically independent. Multiple threads, on the other hand, typically share the state information of a single process, and share memory and other resources directly. 
+
+        - For example, the most common web server for Java is called Tomcat   
+            - Tomcat applies this concept of threading  
+              - This is possible because Java supports multiple threading 
+            - Tomcat runs 200 threads at the same time 
+              - Means it can handle up to 200 concurrent connections at the same time with out delay 
+              - The delay starts at the 201st concurrent connection 
+              - 200 is an ok number for small sites. But it quickly becomes a problem if we are thinking to scale up  
+
+        Blocking or Synchronous Architecture
+        ************************************* 
+          - This is the Architecture used by many web server even to this day 
+          
+          ** What it means is:  
+          - When a request arrives, that request is received by the web server and is allocated to a thread to handle that request
+            - Most of the times, requests involve getting data from the Database. Which involves querying the Database and getting the data  
+            - Usually this takes some time 
+              - In Synchronous Architecture, the thread that sends the query sits and waits until it gets the data back from the Database. Means, it can not accept another request. It is blocked from other requests 
+
+          - This has its own advantages as you don't have to worry about any other thing in the mean time
+          - The disadvantage is, if there are many concurrent requests, it causes delay. 
+            - To avoid the delay, we need to add more hardware to handle the requests. Which makes it an expensive approach
+            - Adding additional resource could have been avoided if we could have a way to avoid the time the CPU sits idle waiting for the response.      
+          - Frame works like Asp.Net and Rails follow a Synchronous architecture by default 
+
+        The Main problem that arises from this Architecture and in general on web servers is:   
+          *** How can we improve the speed of serving pages when there are a lot of concurrent requests? *** 
+
+  Inception of Node.js 
+  ******************** 
+    
+    The problem to solve 
+    ******************** 
+      *** How to improve the speed of serving pages when there are a lots of concurrent requests? *** 
+
+    The Solution (Thanks to Ryan)
+    *****************************   
+      The Conceptual solution 
+      *********************** 
+        ** Non-blocking or Asynchronous Architecture ** 
+
+        Non-blocking or Asynchronous Architecture 
+        ******************************************
+          - Simply means no waiting until external process finishes before starting to serve another client
+          
+          - When a request arrives, that request is received by the web server and is allocated to a process to handle that request
+            - If the request involves querying the Database, it sends the query to the Database. Then instead of waiting for the response, it just takes a note of the request and goes back to receiving another request. 
+              - The system that tracks the requests is called Event Queue
+              - What makes this Event Queue effective is, it has a mechanism to keep track of the status of the request sent to the Database. When the Database returns the data, the queue receives and stores it along with a flag to notify the original thread that the data is ready. 
+              - This avoids the time that is wasted by the CPU waiting for the response
+
+      The Implementation of the Solution as Node.js 
+      ********************************************* 
+
+        Choice of language
+        ****************** 
+          - There are a couple of things a programing language needed to have to be the ideal fit for this solution 
+            - First, it needs to have a good compiler as it is going to be used on the server 
+            - Second, needs to be able to handle a non-blocking I/O request and Asynchronous running 
+            - It has to be a language that most people use already 
+
+          - Most languages that were popular at the time, already had a good compiler, but the problem was their architecture is mostly the Synchronous/Blocking one. 
+            - Languages like Ruby and Python couldn't be a good fit for that reason. 
+
+          - JavaScript was ideal because it can use the Non-Blocking/Asynchronous architecture. Plus it was already known by many people. 
+
+          - The only drawback for JavaScript was that there was no compiler that was ready to be deployed on a server.   
+
+        Development of the JavaScript Compiler 
+        **************************************  
+
+          - At the time of the inception of Node, browsers already had well developed JavaScript run time compilers. 
+
+          - These JavaScript compilers only came bundled with some kind of browser. 
+            - Ryan (Developer of Node.js) took out the V8 engine, the fastest of JavaScript compiler, from Chrome and created another software that is able to execute JavaScript out side of the Browser. He wrote that application using C++ and called it Node.js 
+
+            - While V8 was used inside of a browser, there was no need of providing a way for JavaScript codes to access networks or the file system. Up to that point the main purpose of JavaScript was to just manipulate the DOM object. Since the DOM object was already provided by the browser all was well and no one bothered of the file system or the other things other programing language compilers handle.
+
+            - Ryan took already existing C libraries and included them in the Node.js package along with a way for JavaScript developers to access the C libraries using JavaScript. This allowed JavaScript developers to access the file system, communicate with the network and so on on top of what was already provided by V8. He included these additional modules inside of the core Node.js application and released it to the public.
+
+          - So, what is Node.js? It is just a run time JavaScript Environment :)    
+
+    Main drawback of Node.js   
+    ************************   
+
+      - Since Node uses only one thread to handle requests, it comes with its own drawback. 
+        - Lets say the request that is received requires the CPU to do a lot of things before passing it to another process like the Database. Let's say it is asked to encode a video. This process needs to be done by the CPU itself. The thread will be responsible to handle that. Which will take it a lot of time. Which inturn causes delays to accept a different request. 
+        
+        Therefore, we should avoid using Node for CPU intensive projects. Node is effective for applications which send and receive a lot of data from external services like Database. 
+
+  Getting started with Node.js 
+  **************************** 
+
+https://marketplace.visualstudio.com/items?itemName=lostfields.nodejs-repl
+
+
+
+    Installing Node
+    *************** 
+      - If you don't have Node, go to the link below, download and install the latest stable version 
+        https://nodejs.org/en/ 
+
+      - Check if you already have installed on your machine 
+        - Open up terminal and run 
+          node --version
+
+        - If it returns the version number, it means you already have Node 
+
+    Running your Script on Node 
+    *************************** 
+      - Remember Node is just a run time environment to compile JavaScript 
+
+      - The code that you write is just regular JavaScript. The only difference is instead of running the code on browser, like we are used to so far, we now run the code directly on the computer using the Node compiler 
+
+      - To run a JavaScript code using node, all you need to do is use your terminal to locate the code and type "node" in front of the JavaScript file you want to execute. 
+        eg: node example.js   
+
+    NPM
+    ***
+      What is NPM? 
+      ************
+        - NPM, short for Node Package Manager, is three things: first and foremost, it is an online repository for the publishing of open-source Node.js projects; second, it is a command-line utility for interacting with said repository that aids in package installation, version management, and dependency management; third, it has a website to look through the registered packages 
+        
+        - The three components of NPM:
+          Website
+          Registry
+          CLI
+
+        - The Website	
+          npm official website is https://www.npmjs.com/. Using this website you can find packages, view documentation, share and publish packages.
+        
+        - The Registry 
+          npm is the world's largest Software Registry with over 800,000 code packages.
+
+        - The CLI(Command Line Interface) 
+          This is the command line that helps in interacting with the npm for installing, updating and uninstalling packages and managing dependencies.
+
+      How to use it? 
+      ************** 
+
+        Installing npm
+        ************** 
+
+          - The first thing we need is, we need to have it on our computer 
+
+          - If you install Node.js, NPM comes with it. So, the easiest way to install NPM is to install Node itself 
+            - https://nodejs.org/en/download/
+
+          - To check if npm is installed correctly, type "npm -v" and see if it returns the version you are using 
+
+        package.json
+        *************
+          The package.json is the project manifest file. Using package.json you can manage dependencies and write scripts. It has all the meta data about the project.
+
+          creating package.json
+          *********************
+            First, head over to your project folder. You can create package.json from the command line:
+
+            npm init	
+
+      Basic npm commands
+      ******************
+
+        Installing packages:
+          Locally 
+            npm install <package_name> --save-dev
+            eg: 
+              npm i express --save 
+
+          Globally
+            npm install -g <package_name> --save-dev
+            
+        Updating packages:
+          Updating specific package 
+            npm update <package_name> 
+          
+          Updating every package 
+            npm update 
+
+        Uninstalling packages:
+          npm uninstall <package_name>
+
+        Installing from package.json:
+          npm install
+
+  Next class: Node Modules 
+  ************************
+    - This week's assignment is mainly to get ready for the next class (Node modules)
+    - Focus on fully understanding Git and Github 
+    - Partially focus on your agencies too 
+      - Projects you can build together  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

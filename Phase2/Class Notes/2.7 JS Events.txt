@@ -1,0 +1,131 @@
+JavaScript Events 
+***************** 
+	
+	What are JavaScript Events 
+	**************************  
+		- Events in JavaScript term are what happens on a browser when one browses
+
+		- The browser registers every event that is happening on it.  
+
+		- Your job as a JavaScript developer is to write a script that responds to an event that happens on the browser. This is what makes websites interactive. 
+
+			- When one interacts with a web page, that interaction is registered as an event on the browser. In response to that event, the script that is bound with that event changes something on the web page. Which creates interactivity  
+
+			- NOTE: One key concept to understand in here is, you prepare the scripts in response to potential events that could happen on your website. 
+
+	Event Types 
+	*********** 
+
+		Any of these events can be used to trigger a function in your JavaScript code 
+
+		List of all JavaScript Events 
+			https://www.w3schools.com/tags/ref_eventattributes.asp
+
+		UI/Window Events
+		****************  
+
+			- These events occur when users interact with the browser's user interface (Windows) 
+
+			load  -- When the browser finishes loading a page 
+			unload -- When a page is unloading 
+			error -- When browser encounters a JavaScript error 
+			resize -- When changing the size of a browser 
+			scroll -- when user scrolls up or down 
+
+		Key Board Events
+		**************** 
+
+			keydown -- When user first presses a key 
+			keyup -- When user releases a key
+
+		Mouse Events 
+		************* 
+
+			click -- User presses and releases a button over the same element
+			dbclick -- User presses and releases a button twice 
+			mouseover -- User moves the mouse over an element 
+			mouseout -- User moves the mouse off an element
+
+		Form Events 
+		************ 
+
+			focus / focusin -- Element gains focus
+			blur / focusout -- Element loses focus 
+			change -- Value in select box, checkbox, or radio button changes 
+			submit -- User submits a form (using a button or a key)
+			cut -- User cuts content from a form field
+			paste -- User pastes content into a form field
+			copy -- User copies content from a form field
+			select -- User selects some text in a form field
+
+	Event Handling 
+	*************** 
+
+		- When a user interacts with the DOM Object on a web page, there are three steps involved in triggering a script associated with an event. These three steps together are called event handling. 
+
+			1. Select an element to bind a response with  
+				- This step is identifying an element where you want to respond when an event occurs on it  
+
+			2. Bind an event
+				- This is to identify which specific event you want to respond to 
+
+			3. Attach a script 
+				- This is to instruct the web browser what to do when a specific event happens
+
+				NOTE: The script that you want to bind with an event needs to be written first  
+
+		Three ways to bind an event 
+		**************************** 
+
+			1. HTML Event handlers
+			***********************
+
+				- This approach is considered a bad practice 
+				
+				- Set of attributes added to the element they should respond to an event  
+				https://www.w3schools.com/tags/ref_eventattributes.asp
+
+				Syntax: 
+				onclick="changeBackground()"
+
+			2. Traditional DOM Event handlers
+			**********************************
+
+				- You can separate your JS and HTML 
+				- You can only attach a single function to an event 
+
+				Steps: 
+					- First, select the element you want to bind an event with 
+					- Then bind an event with it
+					- Finally attach a function on the event 
+
+				Syntax: 
+				element.onevent = functionName; 
+					Notice that the event name is precedeed by "on"
+
+			3. DOM Level 2 Event Listeners
+			******************************* 
+
+				- The favored way of handling events 
+				- Allows one event to trigger multiple functions 
+
+				Syntax: 
+				element.addEventListener(event, function);
+
+				// How to bind the enter key with a function 
+				$(document).keypress(function(e){
+						if (e.which == 13){
+								$("#save_post").click();
+						}
+				});
+
+		Halt default behaviors
+		********************** 
+			- There are scenarios where you want the default HTML behavior not to take effect on the browser. For example, you don't want the submit button to submit the form when required filled are not filled out. 
+
+			- These are the methods that you can use to stop these default HTML behaviors. 
+
+				- preventDefault()
+				- stopPropagation()
+
+	

@@ -1,0 +1,32 @@
+The questions in here are based on the HTML inside the "DOM-Practice-Questions" folder 
+
+Question 1: 
+  Select an element from the page which has an ID called "almaz" and display it's text content on console and alert box on page load. 
+
+Question 2: 
+  Select an element from the page which has an ID called "abebe" and put it's text on an element with an ID called "kebede" on page load. 
+
+Question 3: 
+  Select an element from a page which has an ID called "abebe" and put it's text on an element with an ID called "kebede" when a user clicks on an element with an ID called "challa" 
+
+Question 4: 
+  Copy the form we created to demo addition and create a form which does division when the form is submitted. 
+    Note: 
+      - Change the IDs and names of the form as you can't have a duplicate ID in a form.
+      - Remember division by zero is not allowed and make sure your code displays an error when user provides "0" as a divisor. 
+
+Question 5: 
+  Modify the code that handles addition in a way that the two values you enter in the addition form are also passed to the newly created division form and both the sum and division results are calculated and displayed when the addition form is submitted.
+
+Question 6: 
+  Duplicate the form we used to demo user info confirmation and create a similar form with additional field to collect user info. But this time, make the First name and Email fields to be required. Use just HTML to make the first field required and use JavaScript to make the email field required. 
+
+  - If user fails to fill out the email field, an error message notifying the user should appear above the form with a red warning color. 
+
+  - If everything is filled correctly, display the result on the confirmation area 
+
+Question 7: 
+  Add a list of radio buttons on the page containing different color options. When a user clicks on one of them, the background of the page should change to the selected color. 
+    - Two of the buttons should say "Night mode" and "Sunny Mode". When night mode is chosen, the background should change to black and the texts should change to white. When Sunny mode is chosen, the background should change to yellow and texts should be in black.  
+  
+

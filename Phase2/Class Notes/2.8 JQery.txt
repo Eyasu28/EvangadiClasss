@@ -1,0 +1,217 @@
+jQuery
+******
+
+	- What is jQuery? 
+	***************** 
+
+		- jQuery is just a JavaScript library that you include on your web page
+
+		- Means, it is written using JavaScript. The only difference from JavaScript is, it is designed to provide a simpler way of doing things in a more compatible way  
+
+	- Why do we need jQuery?
+	************************ 
+
+		- The main reason is to provide a simplified way of handling tasks, that you can normally do with JavaScript. The motto of jQuery is "Write less, do more" 
+
+			- Cross browser compatibility 
+				- jQuery uses feature detection to find the best way to do things 
+
+			- Simpler selection method
+				- If you use vanilla JavaScript, some methods that you use for selection do not work on older browsers 
+		
+			- There are simpler ways of doing common tasks 
+				- Loop through elements 
+				- Add and remove elements 
+				- Fade elements 
+				- Better event handling 
+			
+		- It provides a consistent result through out different browsers 
+
+	- What can you do with jQuery? 
+	******************************* 
+
+		- Just like JavaScript, there are three main tasks you do with jQuery too 
+
+			- Selecting 
+				- Provides simpler and css-like way of selecting 
+
+			- Updating  
+				- Multiple jQuery methods provide different ways to update, animate and loop through elements in a much simpler way 
+
+			- Handling events 
+				- Allows you to bind events with elements with out the need to write a fall back for older versions 
+
+	- Adding jQuery to your web page 
+	********************************* 
+		- You can download and put it locally or use a cdn 
+		- Add it at the bottom just right before your js file 
+		- It is always recommended to use the latest version available 
+			- https://code.jquery.com/jquery/
+			- https://code.jquery.com/jquery-3.5.1.js
+			- Currently, 3.5.1 is the latest (Dec, 2020)
+
+		Ex: 
+
+	- Selecting (Finding elements with jQuery) 
+	****************************************** 
+
+		- To find and select an element, you use a function called jQuery(). There is a short hand representation of this method. Instead of typing the whole jQuery(), you can just say $(). 
+
+			jQuery() = $()
+
+		- As you can guess from the name, this is the main and most used function in jQuery. 
+
+		- The jQuery() returns an object of the selected element 
+
+		- To select an element, you can use a CSS-Like selecting method with in the jQuery() method. 
+
+		- Types of selectors 
+			- This is very similar with the CSS selectors 
+				- Basic selectors 
+					- #id 
+					- .Class 
+					- element
+					Ex: 
+
+					- Filters 
+						- :first 
+						- :last 
+						- :even 
+						- :odd 
+						- :focus
+						- :empty
+						- :nth-child(2)
+						Ex:
+
+					- Content filters
+						- :has(selector) -- Checks if element exists in the child and returns the parent 
+						
+						- :contains("text")
+						- :empty
+						Ex: 
+
+					- Visibility 
+						- :hidden 
+						- :visible
+						Ex:  
+
+	- Updating values   
+	****************
+
+		- jQuery object has many methods that you can use on the element that you select 
+
+		- These are the common methods that you will use 
+
+			- Methods to get or change content of elements, attributes or nodes 
+				- Content 
+					- html()
+					- text()
+					- remove()
+					Ex: 
+
+				- Elements 
+					- before()
+					- after()
+					- prepend()
+					- append()
+					Ex: 
+
+				- Attributes 
+					- addClass()
+					- removeClass()
+					- css()
+					Ex: 					
+
+				- Form value 
+					- val()
+					- isNumeric()
+					Ex: 
+
+				- Finding elements 
+					- find()
+					- parent()
+					- next()
+					- prev()
+					- has()
+					- contains()
+					Ex: 
+
+				- Looping through elements 
+
+					Ex: 
+
+	- Handling Events
+	*************** 
+
+		- jQuery again makes binding and handling events easier 
+
+		- It uses the on() method to do that 
+
+		- Just like any other method in jQuery, you start by selecting the element you want to respond to. The selection creates a jQuery object that you can use the on() method on
+
+		- Some of the most popular events the on() method deals with are 
+
+		- Note: Each of these events have their own corresponding event binding methods. 
+			For example: 
+				There is a method called focus() or click() which are used to bind event handlers to the corresponding event 
+
+			- UI Events 	
+				- focus, blur, change 
+			- Keyboard 
+				- keypress, keydown, keyup 
+			- Mouse 
+				- click, dbclick, mouseout, mouseover
+			- Form 
+				- submit, change
+			- Document
+				- ready, load 
+			- Browser
+				- resize, scroll
+
+			Ex: 
+
+	Effects and Animations in jQuery 
+	*********************************
+
+		- On of the advantages of jQuery is, it lets us easily enhance our web pages by adding some transition and movement effects 
+
+		- Some of the popular jQuery Effects
+			- Basic 
+				- hide()
+				- show()
+				- toggle()
+				Ex: 
+
+			- Sliding Effects 
+				- slideUp()
+				- slideDown()
+				- slideToggle()
+				Ex: 
+
+			- Fading Effects 
+				- fadeIn()
+				- fadeOut()
+				- fadeToggle()
+				Ex: 
+
+			- Custom 
+				- delay()
+				- stop()
+				- animate()
+				Ex: 
+
+	jQuery Plugins
+	************** 
+
+		- Plugins are just a collection of additional methods that are written to perform specific tasks which are not already included with the core jQuery code 
+
+		- For example, the fadeIn method is included in the jQuery core. If it were not included and someone decides it is a useful method to have, they could write a plugin that is dependent on the core jQuery. 
+
+		- Means, the newly written method still depends on the jQuery object created by the core. It only adds a feature that is not part of the core 
+
+		- Some of the commonly used jQuery plugins 
+			- Gallery 
+				- slick 
+				- fileUpload 
+				- fancyBox 
+
