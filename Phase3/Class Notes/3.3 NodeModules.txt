@@ -1,0 +1,438 @@
+Node Modules
+************ 
+
+  - Modules are the main thing that you need to understand if you want to do anything using Node. 
+
+  What is a Node Module?
+  ********************** 
+
+    - To understand what modules are we need to understand 
+      - What modular structure is 
+        - Why the structure is needed in the first place
+        - How modules are structured 
+        - What exactly we call a module 
+        - What packages are 
+      - How you can use modules  
+      - How you can create and include modules
+
+    - Let's go thorough these one by one and try to explain them   
+
+    Modular structure
+    ***************** 
+
+      What is modular structure?  
+      **************************
+        - Modular structure is a general design principle. This is not just a Node or programing thing
+
+        Definition:  
+          Modular design is a design theory and practice that SUBDIVIDES a system into smaller parts called modules, which can be INDEPENDENTLY 
+            - created, 
+            - modified, 
+            - replaced or 
+            - exchanged 
+          between different systems.
+
+        - Advantages of Modular design 
+          - Allows to work out solutions to common problems independently of projects.
+          - Instead of starting from scratch, complex system can be built by bringing together multiple pieces (modules) with specific functionality.
+          - Pieces can be independently improved or modified 
+
+          Eg: A car manufacturer that follows the modular design principle can only focus on assembling the pieces together in a way that it thinks best fits the customer's demand. 
+            - The pieces/modules are developed independently. For example, another company that is working on the engine is only focused in producing the best engine it can produce. It doesn't have to worry about the tires or seats.   
+
+      Why modular structure is needed in node? 
+      ****************************************
+
+        The problem
+        *********** 
+          - Global namespace collisions
+          
+          - Lack of code reusability  
+
+          What is namespace? 
+          ******************
+            - Namespace is basically the place/space where a a name is accessible. 
+              - This name can be the name of a variable, function or anything 
+
+          What is name collision? 
+          *********************** 
+            - Name collisions is the accidental overriding of the value of a variable. This happens when we accidentally use the same variable name in different places. 
+
+            - JavaScript normally applies a couple of measures to avoid name collisions. 
+              - For example, variables declared inside of a function are only available inside of that function. 
+              - Which helps to avoid accidental overriding of a variable somewhere in the code 
+              - Outside of these very limited measures it takes to avoid collision, JavaScript doesn't handle namespaces in a way it can avoid collisions fully   
+
+          Global namespace 
+          **************** 
+
+            - When we write a JavaScript code to be run on a browser, there is this global object which encompasses every other object on the browser. This object is called the "window" object. 
+
+            - Every time we declare any name globally on our JavaScript file, that name is also accessible through the window object. 
+              Eg: Declare a var and console the window object 
+
+            - This window object is our global namespace  
+
+          Global namespace collisions
+          *************************** 
+            - Lets assume we are using multiple JavaScript files that are written by different developers. Lets say they accidentally gave the same name to their functions. Lets include both files and see what happens on the global level 
+
+              Eg: Run example code and see the result on console.
+                - Call abebe.js and kebede.js  
+
+            - This scenario of having the same name which leads to unintended output is called name collection problem.  
+
+        The solution
+        ************
+
+          The IIFE way (Immediately Invoked Functions)
+          ********************************************
+            - One approach that is commonly used to avoid name collision is to wrap every variable and function that is declared in a javascript file inside of another function that is executed on load 
+              eg: almaz.js 
+
+            Drawbacks of this method 
+              - We need to wrap everything inside an IIFE 
+              - We have to pay attention to the order of the script tags as they could be dependent on the out put of the other
+
+          Modularity
+          **********  
+
+            - As it is the case for every modular system, the first thing that comes before everything is the standard that is going to be followed by both the module builders and the module users. Otherwise it can not be called a module. 
+
+            - Around the time Node was initially launched, in 2009, JavaScript didn't have a standard way of handling modularity. Instead, there was an external initiative by JavaScript developers to create a standard to be able to design modular systems using JavaScript. 
+
+            - The one system that got popularity at the time is called the CommonJS initiative. This initiative defined a general standard that should be followed by everyone who wants to design a modular system. 
+
+            - Node.js adopted this standard system and designed the entire Node application following the Modular design pattern. Which means, if want to write a single piece of code that is going to be plugged into Node, we would have to follow the Modular specification set by the CommonJS group. 
+
+            - It is this standardization that lead to the existence of the amazing npm eco system. Every module on npm follows this standard.  
+
+            - Later in 2015, JavaScript recognized the need to support a standard way of building Modular systems and came up with its own Module standard called "ES6 Module Standard"     
+
+              CommonJS standard
+              ******************   
+                Definition:
+                CommonJS is an agreed upon standard for how code modules should be structured 
+
+                  eg: Node  
+                
+                - CommonJS follows a File Based system
+                  - One file is one module    
+                  - One package includes at least one file
+
+                - CommonJS wraps each module in a function called â€˜requireâ€™, and includes an object called â€˜module.exportsâ€™, which exports code for availability to be required by other modules.
+
+                  - Which allows you to do these two main things 
+                    - Explicit imports
+                      - Only include the things you want to use to build your module 
+                    
+                      - use require() for that  
+                        Format: â€œvar VariableName = require(â€˜pathToModuleâ€™);â€.
+                        eg: const abebe = require('./abebe.js'); 
+
+                    - Explicit exports
+                      - Expose the variables and functions that your want other modules to use 
+
+                        - This is just adding what you want to expose to the export object 
+                          - module.export 
+                          Format: export.varName
+                            eg: export.almaz   
+
+                - One of the biggest cons of the CommonJS standard is, since it is not adopted by the JavaScript standard (ECMAScript), browsers don't understand it. 
+                  - That means, if you write a code following the CommonJS standard, and you want it to be executed on the browser, you need something to translate your code to the standard JS format. 
+
+                  - These helpers are called Module Bundlers  
+                    - What they do is, they take all the js files written following the commonJS pattern and intelligently convert them in to a single JavaScript file. Means, there won't me naming collision now.
+
+                    - One of the most commonly used Module bundler is called Webpack 
+
+              ES6 Module Standard 
+              *******************
+
+                - Just like CommonJS, ES6 Module is also a file based standard. Again, it includes one module per file. 
+
+                - ES6 Module also allows explicit exports and imports. 
+
+                - To explicitly export 
+                  - There are two ways of exporting 
+                    - The default export and regular export 
+                    - You use the key word export in both cases. You just add the key word default when you want to make that export the default 
+                      - Default export lets you import it without explicitly mentioning the name 
+                  Format: export default varToExport/function name
+                    Or just export varToExport/function name 
+
+                - To explicitly import in ES6 Modules, you use the key word import 
+                  - To import default exports 
+                    Format: import varName from 'pathToModule'
+                    eg: import almaz from './almaz'
+
+                  - To import regular exports 
+                    Format import {varName} from 'pathToModule' 
+                    eg: import {almaz} from './almaz'
+                     
+            - You might sometimes come across scenarios where you have to convert a module that is written following the ES6 module to work in a system that follows the CommonJS standard.
+              
+              - Eg: React 
+
+              - One of the most commonly used JavaScript transpilers that converts ES6 to CommonJS is called Bable. 
+                https://babeljs.io/
+
+              - The main purpose of Bable is to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript 
+               
+  Writing a Node Module 
+  *********************  
+  
+    Basic concept 
+    *************
+      - A Node module is a single or multiple JavaScript files with specific functionality organized in a way that can be reused throughout the Node.js application.
+
+      - In Node, we don't have the object called window as we do in a browser. Instead, we have another object called global 
+
+        - We can access the standard JavaScript objects that are already defined in JavaScript through the global object. 
+          - As in global.console.log, etc ... 
+
+      - But, the global variables we declare in our code, say for example var test = "abebe", are not added to the global object as they are added on the window object.  
+          - The ones we define in a file are only scoped in our file. They are not available outside of the file. This is because of the node Modular system. 
+          
+      - Every file inside of node is considered a module 
+          - The functions and variables defined in that file are scoped only to that file. (These are private) 
+
+        - In order to be able to use the variable and function defined in a module to be available out side of the module, we need to explicitly export it. (Make it public)
+
+      - In order for the modularity to work properly, every Node application needs to have at least one module called main file. This is like the starting point of the Application. 
+ 
+    Creating and loading a module 
+    ***************************** 
+      
+      Creating a Module 
+      ***************** 
+
+        - create a js file 
+          - That is it, you just created a module 
+            eg: abebe.js 
+
+          - To help us manage the modules we write, there is this object called module
+          - console this object and see what it includes 
+
+          console.log(module)
+
+            - It has 
+              - id (Every module has a unique id)
+              - exports (What is made available public)
+              - filename 
+              - etc ... 
+
+        - Write your code 
+          - declare your variables and functions 
+
+        - Export it (Only the things you want to be public) 
+          - This is just adding it to the export object inside the module object 
+
+          Format: 
+            module.export.nameOfYourExport = nameOfYourExport; 
+
+            
+            nameOfYourExport can be a variable, a function, class, etc ... 
+
+      Loading a module 
+      **************** 
+
+        - Again, to load a module you should follow the CommonJS standard 
+
+            - We need the require function to load a module  
+            - This function takes one argument. The argument is the path of the module you want to load 
+            - The relative path principle applies here 
+
+            eg: var something = require("./some.js")
+
+      Under the hood 
+      **************
+      
+        - Before executing codes in a module, Node wraps everything in a function called Wrapper function and runs that function instead. 
+
+        - That wrapped function takes the exports, the required modules, the current module, the file and directory path of the current module and does its thing. 
+
+        - That wrapper function looks something like this 
+
+          (function (exports, require, module, __filename, __dirname) {
+            // Code 
+          })()
+
+          - It is an IF-EE function that executes automatically 
+          
+          - You can console.log(__filename) and get the file name of the module if you want to 
+
+    Core Node Modules 
+    ***************** 
+      Node.js has several modules compiled into binary code and included inside the main Node application. 
+ 
+      Most used Core Modules
+      ********************** 
+
+        - List of all built in core modules 
+          https://www.w3schools.com/nodejs/ref_modules.asp 
+
+        - Before we list out the most used core modules, lets try to guess which ones are going to be most used ones. 
+
+        - Let's list out the common things a server side programing language does in addition to forming the logic behind your application. 
+          - Means, what are the common interactions you want to make with the server computer
+
+          - fs  
+            - Create a folder 
+            - Access and open a file 
+            - Edit a file 
+            - Copy a file 
+            - Remove a file or a directory 
+          
+          - os  
+            - Get the name of the host computer 
+            - Get the right network information of the computer 
+          
+          - path  
+            - Identify the path of a specific file or folder 
+            - Identify the path to the root directory 
+            - Identify the extension of a file 
+
+          - http  
+            - Ability to receive and handle HTTP requests 
+              - Which involves understanding the request methods 
+              - The status code 
+              - Manage connections 
+
+          - events 
+            - Ability to listen to events happening on the computer 
+            - Manage asynchronous requests using event loop  
+
+        - That is why these are the most common used modules in node 
+          The Node.js events module
+          The Node.js fs module
+          The Node.js http module
+          The Node.js os module
+          The Node.js path module
+
+    Contributed modules
+    ******************* 
+
+      A list of useful contributed modules 
+        https://github.com/aravindnc/A-to-Z-List-of-Useful-Node.js-Modules 
+
+      Most commonly used contributed node modules/packages 
+        - A package is just a collection of modules that are working to achieve a specific goal. 
+
+        Examples of most used packages 
+          - React
+          - Express 
+          - JSHint
+          - etc ...   
+
+  How to use Core Node Modules 
+  **************************** 
+
+    Getting detail location info about a file 
+    ***************************************** 
+      - Use the "path" Module   
+        Documentation: 
+          - https://nodejs.org/api/path.html
+        
+        - The method we are going to use often is the parse() method. 
+          - https://nodejs.org/api/path.html#path_path_parse_path
+          - You can find the complete definition of this method from the documentation 
+
+          - The parse method takes some "path" as an argument and returns an object. The returned object will have these five properties. 
+            dir <string>
+            root <string>
+            base <string>
+            name <string>
+            ext <string>
+        
+        - Eg: How to get the name of the current file 
+
+    Getting information from our operating system 
+    ********************************************** 
+      - Use the os module for that 
+        Documentation
+          https://nodejs.org/api/os.html
+
+      - Eg: Lets get the free memory of the working computer 
+
+    Dealing with files 
+    ****************** 
+      - Use the fs module for that 
+        Documentation
+          https://nodejs.org/api/fs.html  
+
+      - The fs module is one of the most used core Node modules 
+      - We will learn about the synchronous and asynchronous way of using modules next week. Lets focus on the main methods for now 
+
+      - Eg: Let's read a file that is on the server
+        - readFileSync
+          - Takes two arguments 
+            - The file to read and 
+            - The encoding method used 
+        - writeFileSync
+          - Takes two arguments 
+            - The file to write on 
+            - The content to write   
+
+    Emitting Events 
+    *************** 
+      - Use the events module for that 
+        Documentation
+          https://nodejs.org/api/events.html 
+
+      - There is one class that you use the most in this module 
+        - It is the eventsEmitter class 
+
+      - There are two methods inside of this class 
+        The on() method and the emit() method 
+
+        - The on method is used to listen for a specific event happening on Node 
+
+        - The emit method is what signals the event 
+
+        eg: emit an event when a new file is created and saved 
+
+Next week 
+********* 
+  - Special focus on the http Module  
+  - Creating and running our own server with and with out Express 
+  - Asynchronous calls
+    - Req, Res handling  
+  - How to use Postman
+
+  Please watch these videos for next week 
+    http module 
+      Class video 
+        https://www.youtube.com/watch?v=QHNb5xmUmVI
+
+        Class note: 
+          http://evangadi.com/courses/phase3-docs/Node-server/class3_note.txt
+
+        Using modules: 
+          http://evangadi.com/courses/phase3-docs/Node-server/using_modules.zip 
+
+        Serving Static Pages:  
+          http://evangadi.com/courses/phase3-docs/Node-server/static_file_serving.zip
+
+        Class note: 
+          http://evangadi.com/courses/phase3-docs/Node-server/class3_note.txt
+
+    Express 
+      Class video 
+        - https://www.youtube.com/watch?v=lxI8LkDUNw0
+
+      - Class note: 
+        https://www.evangadi.com/courses/phase3-docs/express/express_note.txt
+
+      - Example code we used in class 
+        https://www.evangadi.com/courses/phase3-docs/express/express-examples.zip 
+
+    Connecting MySql with Node 
+      Class video 
+        - https://www.youtube.com/watch?v=YT9kptL5pO0 
+
+      Class Note 
+        - https://www.evangadi.com/courses/phase3-docs/node-mysql/MySqlQuery-note.txt
+
+      Example Code 
+        - https://www.evangadi.com/courses/phase3-docs/node-mysql/Node-Mysql.zip

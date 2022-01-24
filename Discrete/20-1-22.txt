@@ -1,0 +1,41 @@
+Q1. Examples of Modus Ponens
+   Example1.  "If you have a valid ID, then you can enter the meeting"
+               "You have a valid ID"
+
+                Therefore:
+
+                "You enter the meeting"
+
+                  p→q,p
+
+
+   Example2.    You can't fly to Dubai
+                If you have vaccination ID, then you can fly to Dubai
+
+                Therefore
+
+                You don't have a vaccination ID.
+
+                ¬q,p→q
+
+
+
+
+
+
+Q2. Curry's Paradox Example
+      
+         Let π be a sentence of the language of T. A Curry sentence for π and T is any sentence κ such that κ and κ→π are intersubstitutable according to T
+
+
+
+Q3. How A rule of inference is related to computer science
+         Inference rules are the templates for generating valid arguments. Inference rules are applied to derive proofs in artificial intelligence, and the proof is a sequence of the conclusion that leads to the desired goal.
+         In inference rules, the implication among all the connectives plays an important role.
+
+         In artificial intelligence, we need intelligent computers which can create new logic from old logic or by evidence, so generating the conclusions from evidence and facts is termed as Inference.
+
+         Exaple:
+            The Wumpus world is a simple world example to illustrate the worth of a knowledge-based agent and to represent knowledge representation. It was inspired by a video game Hunt the Wumpus by Gregory Yob in 1973.
+
+

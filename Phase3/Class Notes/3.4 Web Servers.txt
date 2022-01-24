@@ -1,0 +1,209 @@
+Building Node Web Servers 
+************************* 
+
+  Before we start building Node web server, we have to clearly understand the concept of Synchronous and Asynchronous JavaScript. Only because web servers usually handle requests A-synchronically  
+
+  Synchronous and Asynchronous JavaScript
+  *************************************** 
+    Synchronous JavaScript:
+    *********************** 
+      Definition 1: 
+        If your code executes sequentially from top to bottom, it is synchronous.
+
+      Definition 2: 
+        Only one operation can happen at a time and everything else is blocked until an operation completes. 
+        
+        Note: JavaScript is a synchronous, blocking, single-threaded language. 
+
+      - JavaScript is a single-threaded programming language, which means it has a single Call Stack. Therefore it can do one thing at a time.
+        - The Call Stack is a data structure which records basically where in the program we are. 
+        - If we step into a function, we put it on the top of the stack. If we return from a function, we pop off the top of the stack. Thatâ€™s all the stack can do.
+
+      Diagram 1: 
+        https://miro.medium.com/max/1000/1*DeTnKC6L2eMHj9ICv4k4Eg.jpeg
+    
+      eg: Sequential console logs
+        /p3-c4-Asynchronous-examples/app.js  
+
+    Asynchronous JavaScript
+    ***********************
+      Definition 1: 
+        Asynchronicity means that if JavaScript has to wait for an operation to complete, it will execute the rest of the code while waiting.
+
+      Definition 2: 
+        Asynchronous is a way of programing that makes it possible to express waiting for long-running actions without freezing the program during these actions. Even though JavaScript is a Synchronous language, you can manipulate JavaScript to behave in an asynchronous way.
+
+        Diagram 1: 
+          https://miro.medium.com/max/1000/1*9iOmFwC3PWUD8RFLsxzBXQ.jpeg
+
+        Diagram 2:  
+          https://miro.medium.com/max/1400/1*4lHHyfEhVB0LnQ3HlhSs8g.png
+     
+  How to make JavaScript Asynchronous
+  *********************************** 
+    
+    - Callbacks are by far the most common way to express and manage asynchrony in JavaScript 
+            
+    What is a callback function? 
+    **************************** 
+      - A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
+
+      - Callbacks make sure that a function is not going to run before a task is completed but will run right after the task has completed. 
+
+    How to create Asynchronous callback function 
+    ******************************************** 
+      - Note that JavaScript is a single-threaded programming language. It carries asynchronous operations via the callback queue and event-loop. Means, it outsources the operation of handling the specific task to external processors and waits back for the reply. 
+
+      - Both browsers and Node have a way of managing events. This is done by using event loops. 
+
+      - When you make a DataBase call, make a file interaction, calls for Geo locations, Ajax calls, fetch, setTimeout, Promises, all these are passed to external services and handled out side of the single JavaScript run-time thread. Then, the event loop listens back for a notification when the function finishes the task and passes the result back to the single thread. 
+
+      - There is a built-in method in JavaScript called â€œsetTimeoutâ€, which calls a function or evaluates an expression after a given period of time (in milliseconds)
+
+      - As a demonstration, if we use the setTimeout function to run our previous code in an Asynchronous way, it will be something like this.
+
+      - Eg: 
+        const exampleFunction = function() {  
+            console.log("This is an example");
+        }
+        setTimeout(exampleFunction, 3000);
+
+    Promises and Async/Await 
+    ************************ 
+      As we have mentioned before, JavaScript never had a direct way of executing Asynchronicity. In 2015 (ES6), Promises were added and in 2017, Async/Await is added to ES8. 
+        - They both do the same thing that we achieved with callbacks. But in a much cleaner way. These two methods are being used by more and more people.
+
+        - Here is a very well written article explaining about Promises and Async/Await. 
+          - https://medium.com/jspoint/javascript-promises-and-async-await-as-fast-as-possible-d7c8c8ff0abc
+
+          - Callbacks by Travis 
+            - https://www.youtube.com/watch?v=PoRJizFvM7s    
+
+  Building a basic HTTP web server
+  ********************************
+    - First thing first, we have to clearly understand what a web server is and how it works 
+      Definition:
+        A web server is a computer with a software installed on it to handle HTTP requests. 
+          - The computer that stores the files is called "File Server" 
+          - The software that handles the http request is called "Http Server"
+
+    - We can build an HTTP web server using the Node.js as the software that manages the http requests. 
+      - In addition to all the other things Node.js does, it also has one built in module called "http" that is specifically designed and built for this purpose 
+
+      - Handling http requests means: we need a listener that listens to http requests sent to the server and does something with it. 
+
+        Definition of a listener: 
+          - A listener is an object that executes some code when triggered by an event. A listener monitors events happening in the program and acts based on how it's programmed to act in certain events.
+
+        - In Node's case, the listener is an object created by the http module that is triggered by an HTTP request through a specific port. That trigger initiates the process of handling the request. What handles the request is the code that is written inside of the http module. 
+      
+      - So, if we want to build a web server using Node, we need to use the http module to listen and handle the http request 
+          
+  Using the http Module to serve simple message  
+  *********************************************  
+    Documentation
+      - https://nodejs.org/api/http.html
+
+    createServer() method 
+    ********************* 
+      - The main method we use to create a server is the createServer() method 
+        - http.createServer([options][, requestListener])
+        - This method takes two arguments 
+          1: Classes to define the IncomingMessage and ServerResponse objects. 
+            - Means, the request object and response objects are created based on these definitions. The objects created with these classes will then get passed to the requestListener function to do its thing 
+              - The request object contains all the information sent by the client (Browser)
+              - The response object contains every property that is needs to be sent back to the browser.    
+          
+          2: A requestListener function to handle the request
+            - This is the code you write to handle the request the way you want it  
+      
+        - Just calling this method creates a server on your computer
+          - How it achieves this is by creating an HTTP Server object
+          - The "HTTP Server object" is what makes your computer behave as an HTTP server
+
+    HTTP Server object
+    ****************** 
+      - Has the following main methods inside it
+        - listen()	
+          - Makes the server listen to ports on the computer
+          - This is the method you use to tell the specific port the server needs to listen
+        - close()	
+          - Closes the server connection. (Stops listening)
+        - setTimeout()	
+          - Sets the server's timeout value
+
+      - It also has a couple of properties 
+        - listening	
+          - Returns true if the server is listening for connection, otherwise false
+        - maxHeadersCount	
+          - Limits the number of incoming headers
+        - timeout	
+          - Sets, or gets, the server's timeout value
+
+      Eg: 
+        - Create a basic web server that listens to port 7777 and serves back a simple message 
+
+        - Step by step implementation demo  
+          /class-examples/app.js
+
+  Serving static files with HTTP  
+  ******************************  
+    - At this point, we can serve static pages with out the need to use additional Modules like Express 
+      - Let's try to do that and see how everything works 
+
+      eg: Static file serving 
+
+  Express
+  ******* 
+
+    Main site: 
+      https://expressjs.com/ 
+
+    - Start with npm init 
+    - npm i express --save 
+
+    Express basics
+    **************
+
+      Why express over the http module?
+      ********************************* 
+
+        - The http module sets up connections to receive and send data through the HTTP protocol. 
+        - But these are not the only things you need to take care to build a well functioning web server. There are other issues that we need to handle too. For example: 
+          - The issue of setting individual routes for each asset we use (images, css files, js files, etc ..)
+          - There is the issue of CORS if we are requesting resources from a different server 
+          - Easier routing layer 
+          - Use of middleware to add additional functionalities
+          - Automatic header information inclusion  
+        - So, Express took the functionality of the http module and added the other needed parts to make things easier 
+          - If what you need to do is just simple serving of say for example a simple api, you are probably better of using http module 
+
+      How to handle HTTP requests using Express
+      ***************************************** 
+
+        All the request information are included inside the req object that is created by express
+        https://expressjs.com/en/5x/api.html#req
+        Most important ones
+        - req.url
+        - req.ip
+        - req.params
+        - req.query
+        - req.path
+        - req.method
+        - req.hostname
+
+        We use the above properties to correctly write the function that handles the request
+        We will use these more when we make API calls in later classes 
+
+        Middleware
+          Middleware is how Express handles a sequence of actions in between the time it receives the request and the time it sends back the response 
+          
+          More on Middleware:
+            https://expressjs.com/en/guide/using-middleware.html
+
+        eg: Serving static file using Express         
+
+  Next class 
+  **********  
+    - Connecting with DB (MySql) and serving data that is fetched from a database 
+    - APIs 

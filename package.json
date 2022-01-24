@@ -1,0 +1,23 @@
+{
+  "name": "evangadi",
+  "version": "1.0.0",
+  "description": "just excercising",
+  "main": "new.js",
+  "scripts": {
+    "test": "okay"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eyasu28/EvangadiClasss.git"
+  },
+  "keywords": [
+    "no",
+    "keywords"
+  ],
+  "author": "me",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eyasu28/EvangadiClasss/issues"
+  },
+  "homepage": "https://github.com/Eyasu28/EvangadiClasss#readme"
+}
